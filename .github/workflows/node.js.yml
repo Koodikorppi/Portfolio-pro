@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "setup-test-actions" ]
   pull_request:
     branches: [ "main" ]
 
