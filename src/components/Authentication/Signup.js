@@ -21,7 +21,7 @@ const Signup = (props) => {
                 <Input
                     element="input"
                     id="username"
-                    type="submit"
+                    type="text"
                     label="Username"
                     validators={[VALIDATOR_MINLENGTH(6)]}
                     errorText="Enter a valid username, at least 6 characters"
@@ -45,7 +45,7 @@ const Signup = (props) => {
                     errorText="Enter a valid password, at least 8 characters"
                     onInput={inputHandler}
                 />
-            <Button type="submit" disabled={!formState.isValid && !isSame} data-cy="signup_submit_btn">
+            <Button type="submit" disabled={!formState.isValid || !isSame} data-cy="signup_submit_btn">
               SIGNUP
             </Button>
                 </form>

@@ -11,7 +11,7 @@ const Login = (props) => {
                 <Input
                     element="input"
                     id="username"
-                    type="submit"
+                    type="text"
                     label="Username"
                     validators={[VALIDATOR_MINLENGTH(6)]}
                     errorText="Enter a valid username, at least 6 characters"
