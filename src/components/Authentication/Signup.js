@@ -45,7 +45,7 @@ const Signup = (props) => {
                     errorText="Enter a valid password, at least 8 characters"
                     onInput={inputHandler}
                 />
-            <Button type="submit" disabled={!formState.isValid && !isSame}>
+            <Button type="submit" disabled={!formState.isValid && !isSame} data-cy="signup_submit_btn">
               SIGNUP
             </Button>
                 </form>

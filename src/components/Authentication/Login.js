@@ -26,7 +26,7 @@ const Login = (props) => {
                     errorText="Enter a valid password, at least 8 characters"
                     onInput={inputHandler}
                 />
-            <Button type="submit" disabled={!formState.isValid}>
+            <Button type="submit" disabled={!formState.isValid} data-cy="login_submit_btn">
               LOGIN
             </Button>
                 </form>

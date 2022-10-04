@@ -70,11 +70,11 @@ const Authenticate = () => {
 
     const switchModeHandler = (mode) => {
       if (mode == AuthMode.login) {
-        setFormData(          
+        setFormData(
           {
             username: {
               value: '',
-              isValid: false,          
+              isValid: false,
             },
             password: {
               value: '',
@@ -91,7 +91,7 @@ const Authenticate = () => {
             },
             username: {
               value: '',
-              isValid: false,          
+              isValid: false,
             },
             password: {
               value: '',
@@ -101,18 +101,18 @@ const Authenticate = () => {
               value: '',
               isValid: false,
             }
-          }, false);              
+          }, false);
       }
 
       setLoginMode(mode);
     }
 
-    const mode = loginMode === AuthMode.login ? 
+    const mode = loginMode === AuthMode.login ?
       <Login
       onSubmitHandler={onSubmitHandler}
       inputHandler={inputHandler}
       formState={formState}
-      /> : 
+      /> :
       <Signup
       onSubmitHandler={onSubmitHandler}
       inputHandler={inputHandler}
@@ -122,8 +122,8 @@ const Authenticate = () => {
     return (
         <div className='authentication'>
             <div>
-                <Button disabled={loginMode == AuthMode.login} onClick={() => switchModeHandler(AuthMode.login)}>Log in</Button>
-                <Button disabled={loginMode == AuthMode.signup} onClick={() => switchModeHandler(AuthMode.signup)}>Sign up</Button>
+                <Button disabled={loginMode == AuthMode.login} onClick={() => switchModeHandler(AuthMode.login)} data-cy="switch_to_login_btn">Log in</Button>
+                <Button disabled={loginMode == AuthMode.signup} onClick={() => switchModeHandler(AuthMode.signup)} data-cy="switch_to_signup_btn">Sign up</Button>
             </div>
             {mode}
         </div>)
