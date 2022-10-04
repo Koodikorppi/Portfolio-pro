@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './styles/App.css';
+import { Routes, Route } from "react-router-dom";
+import { useLoginHook } from './hooks/useLoginHook';
+import { AuthContext } from './contexts/AuthContext';
+import AuthPage from './pages/AuthPage';
+import VerificationPage from './pages/VerificationPage';
 
-function App() {
+const App = () => {
+  const { token, userId, login, logout } = useLoginHook()
+  console.log("app page")
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthContext.Provider value={
+        {
+          isLoggedIn: !!token,
+          token: token,
+          login: login,
+          logout: logout,
+          userId: userId
+        }
+      }>
+        <Routes>
+          <Route path="/" element={<AuthPage />} />
+          <Route path="/preview" element={<AuthPage />} />
+          <Route path="/user" element={<AuthPage />} />
+          <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
+        </Routes>
+      </AuthContext.Provider>
     </div>
   );
 }
