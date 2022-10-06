@@ -69,7 +69,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    padding-top: 6em;
 }
 .login_wrapper{
     width: 100%;
@@ -152,6 +152,7 @@ body{
     }
     .authentication{
         flex-basis: 80%;
+        padding-top: 3em;
     }
     .hero div:not(.heroimg){
         position: relative;
