@@ -1,7 +1,162 @@
-.authentication{
+:root{
+    --main_color:#0072bd;
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+    background: rgb(0,114,189);
+    background: -moz-linear-gradient(45deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+    background: -webkit-linear-gradient(45deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+    background: linear-gradient(45deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0072bd",endColorstr="#44d8ff",GradientType=1);
+}
+*{
+    box-sizing: border-box;
+}
+#root{
+    height: inherit;
+    width: inherit;
 
 }
+.App{
+    display: flex;
+    float: right;
+    width: 100vw;
+    height: 100vh;
+}
+.hero{
+    flex-basis: 50%;
 
+    color: white;
+
+    position: relative;
+
+}
+.heroimg{
+    height: 100%;
+    width: 100%;
+    background-image: url('/public/img/login_screen.jpg');
+   clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+
+}
+.hero h1{
+    font-weight: 200;
+    margin-bottom: 0.25em;
+    font-size: 3em;
+    z-index: 999;
+    position: relative;
+}
+.hero div:not(.heroimg){
+    position: absolute;
+    bottom: 4em;
+    left: 4em;
+}
+.hero i{
+    font-size: 1em;
+    margin-left: 0.5em;
+    z-index: 999;
+    position: relative;
+}
+
+.authentication{
+    background-color: white;
+    flex-basis: 50%;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.login_wrapper{
+    width: 100%;
+    max-width: 400px;
+}
 .inputform{
-    
+    border: solid 2px #222;
+    padding: 1em;
+    text-align: center;
+}
+.inputform div{
+    text-align: left;
+}
+.switch_login button, .inputform button{
+    display: inline-block;
+    padding: 0.5em 2em;
+    margin:  0 auto;
+    border-radius: 0;
+    background-color: var(--main_color);
+    border: none;
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    cursor: pointer;
+}
+
+.switch_login{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+
+}
+.switch_login button{
+    background-color: white;
+    color: #222;
+    border: none;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+    padding: 0.5em 2em;
+    flex-basis: 50%;
+    font-size: 1em;
+}
+.switch_login .disabled{
+    color: white;
+    background-color: #222;
+    border: solid 2px #222;
+}
+/* submit button styles */
+.inputform button{
+    margin-top: 2em;
+    border: none;
+}
+.inputform button:hover{
+    background-color: #018be7;
+}
+.inputform button[disabled]{
+    border: solid thin #999;
+    background-color: white;
+    color: #999;
+    pointer-events: none;
+}
+
+@media only screen and (max-width: 800px) {
+    body{
+         background: rgb(0,114,189);
+        background: -moz-linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+        background: linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0072bd",endColorstr="#44d8ff",GradientType=1);
+    }
+    .heroimg {
+        display: none;
+    }
+    .App{
+        flex-direction: column;
+    }
+    .hero{
+        flex-basis: 20%;
+        justify-content: center;
+        text-align: center;
+    }
+    .authentication{
+        flex-basis: 80%;
+    }
+    .hero div:not(.heroimg){
+        position: relative;
+        bottom: unset;
+        left: unset;
+        margin: 1.5em;
+    }
 }

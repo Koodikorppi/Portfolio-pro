@@ -121,11 +121,13 @@ const Authenticate = () => {
 
     return (
         <div className='authentication'>
-            <div>
+          <div className='login_wrapper'>
+            <div className='switch_login'>
                 <Button disabled={loginMode == AuthMode.login} onClick={() => switchModeHandler(AuthMode.login)} data-cy="switch_to_login_btn">Log in</Button>
                 <Button disabled={loginMode == AuthMode.signup} onClick={() => switchModeHandler(AuthMode.signup)} data-cy="switch_to_signup_btn">Sign up</Button>
-            </div>
+          </div>
             {mode}
+        </div>
         </div>)
 }
 export default Authenticate;
