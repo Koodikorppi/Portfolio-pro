@@ -25,8 +25,8 @@ body{
 .App{
     display: flex;
     float: right;
-    width: 100vw;
-    height: 100vh;
+    min-width: 100vw;
+    min-height: 100vh;
 }
 .hero{
     flex-basis: 50%;
@@ -69,11 +69,13 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 6em;
+    justify-content: center;
+    height: auto;
 }
 .login_wrapper{
     width: 100%;
     max-width: 400px;
+    min-height: 460px;
 }
 .inputform{
     border: solid 2px #222;
@@ -133,19 +135,17 @@ body{
 
 @media only screen and (max-width: 800px) {
     body{
-         background: rgb(0,114,189);
-        background: -moz-linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
-        background: -webkit-linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
-        background: linear-gradient(180deg, rgba(0,114,189,1) 0%, rgba(68,216,255,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0072bd",endColorstr="#44d8ff",GradientType=1);
+        background-color: white;
     }
     .heroimg {
         display: none;
     }
     .App{
+        background-color: white;
         flex-direction: column;
     }
     .hero{
+        background-color: rgb(0,114,189);
         flex-basis: 20%;
         justify-content: center;
         text-align: center;
