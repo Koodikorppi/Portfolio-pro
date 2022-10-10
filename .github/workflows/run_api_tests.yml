@@ -2,7 +2,9 @@ name: Robot Framework
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+      - backed-tests
 
 jobs:
     test:
