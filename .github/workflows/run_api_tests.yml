@@ -7,19 +7,13 @@ on:
       - backed-tests
       
 jobs:
-    test:
+    robot_test:
         runs-on: ubuntu-latest
+        name: Run Robot Framework Tests
         steps:
-        - uses: actions/checkout@v2
-        - name: Execute tests
-          uses: joonvena/robotframework-docker-action@v0.1
-          env:
-            BROWSER: chrome
-            ROBOT_TESTS_DIR: ${{ github.workspace }}/tests
-            ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
-        - name: Upload test results
-          uses: actions/upload-artifact@v1
-          if: always()
-          with:
-            name: reports
-            path: ${{ github.workspace }}/reports
+          - name: Checkout
+            uses: actions/checkout@v2
+          - name: Robot Framework
+            uses: joonvena/robotframework-docker-action@v1.0
+            with:
+              robot_tests_dir:  ${{ github.workspace }}/tests
