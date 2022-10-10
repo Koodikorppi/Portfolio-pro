@@ -5,12 +5,26 @@ on:
     branches: [ main ]
 
 jobs:
-    test:
+  run_tests:
         runs-on: ubuntu-latest
-        name: Run Robot Framework Tests
         steps:
-          - uses: actions/checkout@v2
-          - name: Execute tests
-            uses: joonvena/robotframework-docker-action@v1.0
-            with:
-              ROBOT_TESTS_DIR: $GITHUB_WORKSPACE/tests
+        # checkout code from a repository
+        - uses: actions/checkout@v3
+        # create folder for test reports
+        - name: Create folder for reports
+          run: mkdir reports
+        # run Robot Framework tests inside Docker container
+        - name: Run Robot Framework Tests
+          # container used here is ppodgorsek/robot-framework:latest
+          # it is strongly recommended to use versioned image (ie. not the tag latest like here) to maintain dependencies
+          # see container documentation for usage: https://hub.docker.com/r/ppodgorsek/robot-framework/dockerfile
+          # it is required that GitHub repository contains folder "reports". Commit some file inside "reports" to create it
+          # place tests in folder tests or change docker run command accordingly
+          # configure -e ROBOT_OPTIONS according to yout tests, or remove it if no special configuration is needed
+          run: |
+            docker run \
+              -v ${PWD}/reports:/opt/robotframework/reports:Z \
+              -v ${PWD}/tests:/opt/robotframework/tests:Z \
+              -e ROBOT_OPTIONS="--variable DINOSAUR:Achillobator --variable NOT_DINOSAUR:kissa" \
+              --user $(id -u):$(id -g) \
+              ppodgorsek/robot-framework:latest
