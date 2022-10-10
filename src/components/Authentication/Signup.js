@@ -1,10 +1,10 @@
 import React from "react";
 import Input from "../Input"
-import { Button } from "semantic-ui-react";
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from "../../utilities/validators";
 
 const Signup = (props) => {
-    const {onSubmitHandler, inputHandler, formState} = props;
+    const {onSubmitHandler, inputHandler, formState, isLoading} = props;
     console.log(formState);
     const isSame = formState.inputs.password.value === formState.inputs.password2.value;
     return(<div className="inputform">
@@ -45,9 +45,9 @@ const Signup = (props) => {
                     errorText="Enter a valid password, at least 8 characters"
                     onInput={inputHandler}
                 />
-            <Button type="submit" disabled={!formState.isValid || !isSame} data-cy="signup_submit_btn">
+            <ButtonUnstyled type="submit" disabled={!formState.isValid || !isSame || isLoading} data-cy="signup_submit_btn">
               SIGNUP
-            </Button>
+            </ButtonUnstyled>
                 </form>
     </div>)
 }

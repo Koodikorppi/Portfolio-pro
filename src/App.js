@@ -5,6 +5,8 @@ import { useLoginHook } from './hooks/useLoginHook';
 import { AuthContext } from './contexts/AuthContext';
 import AuthPage from './pages/AuthPage';
 import VerificationPage from './pages/VerificationPage';
+import PreviewPage from './pages/PreviewPage';
+import UserPage from './pages/UserPage';
 
 const App = () => {
   const { token, userId, login, logout } = useLoginHook()
@@ -17,13 +19,13 @@ const App = () => {
           token: token,
           login: login,
           logout: logout,
-          userId: userId
+          userId: userId,
         }
       }>
         <Routes>
           <Route path="/" element={<AuthPage />} />
-          <Route path="/preview" element={<AuthPage />} />
-          <Route path="/user" element={<AuthPage />} />
+          <Route path="/preview" element={<PreviewPage />} />
+          <Route path="/user/" element={<UserPage />} />
           <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
         </Routes>
       </AuthContext.Provider>
