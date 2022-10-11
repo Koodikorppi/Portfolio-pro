@@ -17,3 +17,10 @@ jobs:
         uses: joonvena/robotframework-docker-action@v1.0
         with:
           robot_tests_dir: 'tests'
+      - name: Upload reports
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: reports
+          # set path to Robot Framework results reports. Exclude dummy file that is needed because of ppodgorsek image priviledges.
+          path: ${{ github.workspace }}/reports
