@@ -1,10 +1,10 @@
 import React from "react";
 import Input from "../Input"
-import { Button } from "semantic-ui-react";
+import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { VALIDATOR_MINLENGTH } from "../../utilities/validators";
 
 const Login = (props) => {
-    const {onSubmitHandler, inputHandler, formState} = props;
+    const {onSubmitHandler, inputHandler, formState, isLoading} = props;
 
     return(<div className="inputform">
         <form onSubmit={onSubmitHandler}>
@@ -26,9 +26,9 @@ const Login = (props) => {
                     errorText="Enter a valid password, at least 8 characters"
                     onInput={inputHandler}
                 />
-            <Button type="submit" disabled={!formState.isValid} data-cy="login_submit_btn">
+            <ButtonUnstyled type="submit" disabled={!formState.isValid || isLoading} data-cy="login_submit_btn">
               LOGIN
-            </Button>
+            </ButtonUnstyled>
                 </form>
     </div>)
 }
