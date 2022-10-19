@@ -3,14 +3,14 @@ import { useParams } from "react-router";
 import { useHttpClient } from "../hooks/useHttpClient";
 import { Link } from "react-router-dom";
 import { Container, Header } from "semantic-ui-react";
-
+import '../styles/VerificationPage.css';
 
 export const VerificationPage = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const params = useParams();
     const [verified, setVerified] = useState(false)
     useEffect(() => {
-        (async () => {      
+        (async () => {
         try {
           console.log(params)
             const response = await sendRequest(
@@ -33,11 +33,11 @@ export const VerificationPage = () => {
     }, [params])
 
     return (
-    <div>
-      {isLoading ? <div>Checking account</div> : 
+    <div className="verification">
+      {isLoading ? <div>Checking account</div> :
       <Container text>
       <Header as={'h2'}>Verification success!</Header>
-      <p>Your account has now been verified. You can now {<Link to={'/'}>Login</Link>}</p>     
+      <p>Your account has now been verified.<br></br>You can now {<Link to={'/'}>Login</Link>}</p>
       </Container>}
     </div>)
 }

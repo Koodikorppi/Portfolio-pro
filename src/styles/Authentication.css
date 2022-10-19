@@ -1,5 +1,6 @@
 :root{
     --main_color:#0072bd;
+    --main_tint: #018be7;
 }
 body{
     margin: 0;
@@ -124,7 +125,7 @@ body{
     border: none;
 }
 .inputform button:hover{
-    background-color: #018be7;
+    background-color: var(--main_tint);
 }
 .inputform button[disabled]{
     border: solid thin #999;

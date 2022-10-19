@@ -1,0 +1,22 @@
+.verification{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+.verification div{
+    background-color:rgba(255, 255, 255, 0.9);
+    padding: 1em;
+    border-radius: 1em;
+    text-align: center;
+}
+.verification h2{
+    color: var(--main_color);
+}
+.verification a, .verification a:visited{
+    color: var(--main_color);
+}
+.verification a:hover{
+    color: var(--main_tint);
+}
