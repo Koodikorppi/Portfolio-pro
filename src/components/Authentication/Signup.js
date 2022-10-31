@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../Input"
+import Input from "../common/Input"
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from "../../utilities/validators";
 

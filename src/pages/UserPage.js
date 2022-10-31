@@ -1,29 +1,29 @@
 import React, { useState, useContext } from "react";
-import { Sidebar } from "semantic-ui-react";
-import Navbar from "../components/Controlbars/Navbar";
+import Sidebar from "../components/controlbars/Sidebar";
+import SectionContainer from "../components/containers/SectionContainer";
+import Navbar from "../components/controlbars/Navbar";
 import { AuthContext } from "../contexts/AuthContext";
-
+import './UserPage.css'
 
 export const UserPage = () => {
-
-  const [activeItem, setActiveitem] = useState('home')
-  const auth = useContext(AuthContext)
-
-  console.log(activeItem)
-  if(auth.isLoggedIn){
-  return (
-    <div style={{display: 'flex'}}>
-      <div><Navbar/></div>
-      <div>
-        <div><Sidebar/></div>
-        <div></div>
+  const [activeItem, setActiveitem] = useState("home");
+  const auth = useContext(AuthContext);
+  console.log('userpage')
+  console.log(activeItem);
+  console.log(auth.isLoggedIn)
+  if (auth.isLoggedIn) {
+    return (
+      <div className="Userpage">
+        <Sidebar />
+        <div className="Column">
+          <Navbar />
+          <SectionContainer />
+        </div>
       </div>
-    </div>)
-    } else {
-      <div>
-        Need to be logged in to access
-      </div>
-    }
-}
+    );
+  } else {
+    <div>Need to be logged in to access</div>;
+  }
+};
 
 export default UserPage;
