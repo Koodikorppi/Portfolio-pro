@@ -4,12 +4,12 @@ import './Sidebar.css'
 
 const Sidebar = () => {
     return(<div className="Sidebar">
-        <PopoverButton header={'Account'} name={'Account'}/>
-        <PopoverButton header={'Settings'} name={'Settings'}/>
-        <PopoverButton header={'Text'} name={'Text'}/>
-        <PopoverButton header={'Font'} name={'Font'}/>
-        <PopoverButton header={'Layouts'} name={'Layouts'}/>
-        <PopoverButton header={'Backgrounds'} name={'Backgrounds'}/>
+        <PopoverButton header={'Account'} name={'Account'} image={'account.svg'}/>
+        <PopoverButton header={'Settings'} name={'Settings'} image={'coc.svg'}/>
+        <PopoverButton header={'Text'} name={'Text'} image={'text.svg'}/>
+        <PopoverButton header={'Font'} name={'Font'} image={'text.svg'}/>
+        <PopoverButton header={'Layouts'} name={'Layouts'} image={'layouts.svg'}/>
+        <PopoverButton header={'Backgrounds'} name={'Backgrounds'} image={'colors.svg'}/>
     </div>)
 }
 

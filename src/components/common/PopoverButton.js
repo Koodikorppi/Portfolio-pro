@@ -13,19 +13,23 @@ const PopoverButton = ({ content, header, image, name }) => {
   console.log(image)
   return (
     <div id={name} classname="buttonPart">
-      {image !== undefined ? <input
+        {image !== undefined ? 
+        <input
         type={"image"}
-        src={image}
+        src={`/svg/${image}`}
+        alt={image}
         onClick={(e) => handleState(name)}
       ></input> :
       <button onClick={(e) => handleState(name)}>
         {name}
+
         </button>}
       <PopperUnstyled
         open={open}
         id={id}
         anchorEl={anchor}
-        onMouseLeave={(e) => handleState(e)}
+        // Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.
+        //onMouseLeave={(e) => handleState(e)}
       >
         <div className="popover-header">{header}</div>
         <div className="popover-contents">{content}</div>
