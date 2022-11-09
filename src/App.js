@@ -7,6 +7,7 @@ import AuthPage from './pages/AuthPage';
 import VerificationPage from './pages/VerificationPage';
 import PreviewPage from './pages/PreviewPage';
 import UserPage from './pages/UserPage';
+import './styles/App.css'
 
 const App = () => {
   const { token, userId, login, logout } = useLoginHook()
