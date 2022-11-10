@@ -22,5 +22,32 @@
     width: 100%;
     height: 5%;
     justify-content: flex-end;
+}
+
+.section-save button{
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    background-color: #222;
+    border-radius: 50%;
+    width: 4.5em;
+    height: 4.5em;
+    
+}
+.section-save button:hover{
+    cursor: pointer;
+    color: orange;
+}
+.section-save button:hover img{
+    cursor: pointer;
+    filter: invert(40%) sepia(86%) saturate(386%) hue-rotate(349deg) brightness(100%) contrast(98%);
+
+}
+.section-save img{
+    height: 25px;
     
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Authenticate from "../components/authentication/Authenticate";
+import Authenticate from "../components/Authentication/Authenticate";
 
 export const AuthPage = () => {
     return (

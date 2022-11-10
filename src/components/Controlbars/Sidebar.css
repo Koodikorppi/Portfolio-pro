@@ -1,7 +1,35 @@
+:root{
+    --bg_color: #1a1a1a;
+    --toolbar-width: 40px;
+}
 .Sidebar{
     display: flex;
     flex-direction: column;
-    width: 3%;
+    width: var(--toolbar-width);
     height: 100%;
-    background-color: white;
+    background-color: var(--bg_color);
+    position: fixed;
+    left: 0;
+}
+.Sidebar button{
+    display: block;
+    max-width: var(--toolbar-width);
+    max-height: var(--toolbar-width);
+    padding: 0.5em;
+    fill: white;
+    position: relative;
+    height: 40px;
+    background-color: inherit;
+    border: none;
+}
+.Sidebar button img{
+    height: 100%;
+}
+.active{
+    filter: invert(40%) sepia(86%) saturate(386%) hue-rotate(349deg) brightness(100%) contrast(98%);
+
+}
+.Sidebar button:hover img{
+    cursor: pointer;
+    filter: invert(40%) sepia(86%) saturate(386%) hue-rotate(349deg) brightness(100%) contrast(98%);
 }

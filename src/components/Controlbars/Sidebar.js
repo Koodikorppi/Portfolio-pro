@@ -8,6 +8,9 @@ const Sidebar = () => {
     const [header, setHeader] = useState(null);
     const [content, setContent] = useState(null);
 
+    const setLinkActive = () =>{
+
+    }
     const handleState = (header, content) => {
         if(document.getElementById("sidebar-popover") == null){
             setAnchor(document.getElementById("sidebarID"));
@@ -34,12 +37,12 @@ const Sidebar = () => {
 
 
     return(<div className="Sidebar" id="sidebarID">
-        <button onClick={() => handleState('Account',  <div></div>)}>Account</button>
-        <button onClick={() => handleState('Settings',  <div></div>)}>Settings</button>
-        <button onClick={() => handleState('Text',  <div></div>)}>Text</button>
-        <button onClick={() => handleState('Font',  <div></div>)}>Font</button>
-        <button onClick={() => handleState('Layouts',  <div></div>)}>Layouts</button>
-        <button onClick={() => handleState('Backgrounds',  <div></div>)}>Backgrounds</button>
+        <button onClick={() => handleState('Account',  <div></div>) }><img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Settings',  <div></div>)}><img src="/svg/cog.svg" alt="Settings" className={'Settings' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Text',  <div></div>)}><img src="/svg/paragraph.svg" alt="Text" className={'Text' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Font',  <div></div>)}><img src="/svg/text.svg" alt="Font" className={'Font' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Layouts',  <div></div>)}><img src="/svg/layouts.svg" alt="Layouts" className={'Layouts' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Backgrounds',  <div></div>)}><img src="/svg/colors.svg" alt="Backgrounds" className={'Backgrounds' === header ? 'active' : ''}></img></button>
         <PopperUnstyled
         open={open}
         id={id}
