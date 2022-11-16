@@ -10,8 +10,13 @@ const LayoutContents = () => {
     const context = useContext(SectionContext)
     const [open, setOpen] = useState(false)
     const [current, setCurrent] = useState(context.layout)
+    //<button onClick={() => handleState('Account',  <div></div>) }>
+    //<img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img>
+    //</button>
 
     const layouts = [1,2,3,4,5]
+    const layout_names = ['Grid','Image gallery','Video gallery','Side-scroller','Form']
+    const svg_icons = ['grid_layout','photos_layout','videos_layout','slides_layout','form_layout']
 
     const handleSelect = (e) => {
         if(e !== context.layout){
@@ -32,7 +37,7 @@ const LayoutContents = () => {
     }
     return(<div className="LayoutContents">
         {layouts.map((l, index) => {
-            return <button  key={index} onClick={() => handleSelect(l)}>{l}</button>
+            return <button className="layout_button" key={index} onClick={() => handleSelect(l)}>{<img src={`/svg/${svg_icons[index]}.svg`} alt="" ></img> }{layout_names[index]}</button>
         })}
     <ModalUnstyled
         id={"popoverwarn"}

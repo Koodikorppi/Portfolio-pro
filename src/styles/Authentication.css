@@ -31,11 +31,8 @@ body{
 }
 .hero{
     flex-basis: 50%;
-
     color: white;
-
     position: relative;
-
 }
 .heroimg{
     height: 100%;
@@ -136,13 +133,13 @@ body{
 
 @media only screen and (max-width: 800px) {
     body{
-        background-color: white;
+     
     }
     .heroimg {
         display: none;
     }
     .App{
-        background-color: white;
+
         flex-direction: column;
     }
     .hero{

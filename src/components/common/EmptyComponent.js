@@ -9,7 +9,7 @@ const EmptyComponent = ({propkey, setter}) => {
     }
 
     return(<div>
-        <button onClick={() => handleClick()}>+</button>
+        <button className="plus_icon" onClick={() => handleClick()}>{<img src={`/svg/plus_icon.svg`} alt="" ></img>}</button>
     </div>)
 
 }
