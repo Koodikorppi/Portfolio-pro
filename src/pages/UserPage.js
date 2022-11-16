@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import Sidebar from "../components/controlbars/Sidebar";
+import Sidebar from "../components/Controlbars/Sidebar";
 import SectionContainer from "../components/containers/SectionContainer";
-import Navbar from "../components/controlbars/Navbar";
+import Navbar from "../components/Controlbars/Navbar";
 import { SectionContext } from "../contexts/SectionContext";
 import { AuthContext } from "../contexts/AuthContext";
 import './UserPage.css'

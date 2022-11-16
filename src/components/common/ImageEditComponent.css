@@ -1,0 +1,21 @@
+.imagecomponent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagecomponent label{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    color: #111;
+}
+.imagecomponent label img{
+    max-height: 50px;
+    filter: invert(80%);
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    cursor: pointer;
+}

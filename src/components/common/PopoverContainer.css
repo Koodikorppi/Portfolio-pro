@@ -1,6 +1,7 @@
 .popover-header{
     border: none;
     font-weight: bold;
+    margin-bottom: 1em;
 }
 div[id$="popover"] {
     display: block;
@@ -13,5 +14,58 @@ div[id$="popover"] {
     position: absolute;
     box-shadow: "0 2px 8px 0 rgba(0,0,0,0.2)";
     padding: 1em;
-      
+}
+
+.container div{
+    display: flex;
+    margin: 0 auto;
+}
+.plus_icon{
+    background-color: transparent;
+    border: none;
+
+}
+.plus_icon:hover{
+    cursor: pointer;
+    filter: invert(40%) sepia(86%) saturate(386%) hue-rotate(349deg) brightness(100%) contrast(98%);
+}
+.plus_icon img{
+    filter: invert(40%) sepia(86%) saturate(0%) hue-rotate(349deg) brightness(100%) contrast(98%);
+}
+.container .typeselect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container .typeselect .buttons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1em;
+}
+.typeselect p{
+    width: 100%;
+    text-align: center;
+    height: 1em;
+    margin-bottom: 2em;
+}
+.typeselect button{
+    width: 75px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    background-color: transparent;
+    border: none;
+}
+.typeselect button img{
+    max-height: 50px;
+    filter: invert(80%);
+}
+.typeselect button:hover{
+    cursor: pointer;
+    opacity: 0.8;
 }
