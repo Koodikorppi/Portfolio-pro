@@ -14,11 +14,11 @@ const ImageEditComponent = ({propkey, setter, data}) => {
 
 
     return(<div className="imagecomponent">
-        <div>
-            <label class="custom-file-upload" htmlFor="imageSelect">{<img src={`/svg/camera_icon.svg`} alt="" ></img> } Select image</label>
+        {(data === undefined || data === null) && <div>
+            <label className="custom-file-upload" htmlFor="imageSelect">{<img src={`/svg/camera_icon.svg`} alt="" ></img> } Select image</label>
             <input id="imageSelect" onInput={(e) => imageSettings( URL.createObjectURL(e.target.files[0]))} type="file"></input>
-        </div>
-        {(data !== undefined && data !== null) && <img src={data}  width={300} height={300} alt={data} />}
+        </div>}
+        {(data !== undefined && data !== null) && <img className="imageStyle" src={data}  width={"100%"} height={"100%"} alt={data} />}
     </div>)
 
 }

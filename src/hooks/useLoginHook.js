@@ -22,6 +22,13 @@ export const useLoginHook = () => {
     localStorage.removeItem('userData');
   }, [])
 
+  const refreshToken = useCallback(() => {
+    if (token) {
+    const tokenExpiration = new Date(new Date().getTime() + 1000 * 60 * 60);
+    setTokenExpirationDate(tokenExpiration);
+    }
+  }, [])
+
   useEffect(() => {
     if (token && tokenExpirationDate) {
       const remainingTime = tokenExpirationDate.getTime() - new Date().getTime();
@@ -40,5 +47,5 @@ export const useLoginHook = () => {
     }
   }, [login]);
 
-  return {token, userId, login, logout}
+  return {token, userId, login, logout, refreshToken}
 }

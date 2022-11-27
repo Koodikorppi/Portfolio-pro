@@ -8,10 +8,11 @@ const TypeSelector = ({propkey, setter}) => {
         setter((prev) => {
              return {...prev, [propkey]: {type: type}}})
     }
+    
 
     return(<div className="typeselect">
         <p>Select content type:</p>
-            <div class="buttons">
+            <div className="buttons">
             <button onClick={() => handleClick("text")}>{<img src={`/svg/add_text_icon.svg`} alt="" ></img>} Text</button>
             <button onClick={() => handleClick("image")}>{<img src={`/svg/add_image_icon.svg`} alt="" ></img>} Image</button>
             <button onClick={() => handleClick("video")}>{<img src={`/svg/add_video_icon.svg`} alt="" ></img>} Video</button>

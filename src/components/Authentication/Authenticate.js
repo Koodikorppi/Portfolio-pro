@@ -50,7 +50,6 @@ const Authenticate = () => {
             }
           );
           auth.login(response.userId, response.token);
-          navigate(`/user/`)
         } catch (err) {
           console.log(err)
           console.log('failed request')
@@ -80,7 +79,7 @@ const Authenticate = () => {
     useEffect(() => {
       if(show){
         setTimeout(() => setShow(false), 5000)
-      }  
+      }
     }, [show])
 
     const switchModeHandler = (mode) => {
@@ -135,7 +134,6 @@ const Authenticate = () => {
       formState={formState}
       isLoading={isLoading}
       />
-    if(!auth.isLoggedIn){
       return (
         <div className='authentication'>
           <div className='login_wrapper'>
@@ -149,9 +147,5 @@ const Authenticate = () => {
         content='we have sent confirmation to your email. Please click the link in the message to verify your account.'
         /> : <></>}
         </div>)
-    } else {
-      navigate(`/user/`)
-    }
-    
 }
 export default Authenticate;

@@ -4,9 +4,10 @@
 .Navbar{
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    width: calc(100% - 40px);
     height: var(--toolbar-width);
     background-color: rgb(71, 71, 71);
     position: fixed;
     left: var(--toolbar-width);
+    color: white;
 }

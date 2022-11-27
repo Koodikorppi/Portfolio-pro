@@ -3,6 +3,7 @@ import { SectionContext } from "../../contexts/SectionContext";
 import './LayoutContents.css'
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
+import { baseLayoutData } from "../layouts/baseGrids";
 
 
 
@@ -14,7 +15,7 @@ const LayoutContents = () => {
     //<img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img>
     //</button>
 
-    const layouts = [1,2,3,4,5]
+    const layouts = ['gridLayout',2,3,4,5]
     const layout_names = ['Grid','Image gallery','Video gallery','Side-scroller','Form']
     const svg_icons = ['grid_layout','photos_layout','videos_layout','slides_layout','form_layout']
 
@@ -31,9 +32,9 @@ const LayoutContents = () => {
     }
 
     const handleYes = () => {
-        console.log('yes')
         setOpen(false)
         context.setLayout(current)
+        context.setSectionData(baseLayoutData[current])
     }
     return(<div className="LayoutContents">
         {layouts.map((l, index) => {
