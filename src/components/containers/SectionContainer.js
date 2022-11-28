@@ -80,7 +80,7 @@ const SectionContainer = () => {
     }
 
     return(<div className="section">
-        <div className="section-header"><input defaultValue={context.activeSection.name} type={"text"} onChange={(e) => setHeader(e.target.value)} placeholder="Section header..."/></div>
+        <div className="section-header"><input defaultValue={(context.activeSection !== null) ? context.activeSection.name : "" } type={"text"} onChange={(e) => setHeader(e.target.value)} placeholder="Section header..."/></div>
         <div className="section-content">{context.layout === 'gridLayout' && <GridLayout data={context.sectionData} setter={context.setSectionData}/>}</div>
         <div className="section-save">
             {context.activeSection !== null &&<button onClick={() => handleDel()}>Delete</button>}
