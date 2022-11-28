@@ -1,23 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Sidebar from "../components/Controlbars/Sidebar";
 import SectionContainer from "../components/containers/SectionContainer";
 import Navbar from "../components/Controlbars/Navbar";
 import { SectionContext } from "../contexts/SectionContext";
-import { AuthContext } from "../contexts/AuthContext";
 import './UserPage.css'
-import { useNavigate } from 'react-router';
+import { getSections } from "../components/containers/mockupdata";
 
 export const UserPage = () => {
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState(null);
   const [text, setText] = useState(null)
   const [font, setFont] = useState(null)
+  const [sectionData, setSectionData] = useState(null)
   const [background, setBackground] = useState(null)
   const [navLinks, setNavlinks] = useState([])
   const [layout, setLayout] = useState(null)
-  const auth = useContext( AuthContext);
-  const navigate = useNavigate();
 
-  if (auth.isLoggedIn) {
+  useEffect(() => {
+    const links = getSections()
+    setNavlinks(links)
+  },[])
+
     return (
       < SectionContext.Provider value={
         {
@@ -26,11 +28,15 @@ export const UserPage = () => {
           background: background,
           navLinks: navLinks,
           layout: layout,
+          sectionData: sectionData,
+          activeSection: activeSection,
           setText: setText,
           setFont: setFont,
           setBackground: setBackground,
           setNavlinks: setNavlinks,
-          setLayout: setLayout
+          setLayout: setLayout,
+          setSectionData: setSectionData,
+          setActiveSection: setActiveSection
         }
       }>
       <div className="userpage">
@@ -42,9 +48,6 @@ export const UserPage = () => {
       </div>
       </ SectionContext.Provider>
     );
-  } else {
-    navigate('/')
-  }
 };
 
 export default UserPage;

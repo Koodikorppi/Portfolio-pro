@@ -12,10 +12,12 @@ const VideoEditComponent = ({propkey, setter, data}) => {
         })
     }
 
-    console.log(data)
+
     return(<div className="videocomponent">
-        <div>Select video  <input  id="videoSelect" onInput={(e) => videoSettings( URL.createObjectURL(e.target.files[0]))} type="file"></input></div>
-        {(data !== undefined && data !== null) && <video src={data}  width={300} height={300} controls></video>}
+        {(data === undefined || data === null) &&
+        <div>
+         <input  id="videoSelect" onInput={(e) => videoSettings( URL.createObjectURL(e.target.files[0]))} type="file"/></div>}
+        {(data !== undefined && data !== null) && <video className="videoStyle" src={data} controls></video>}
     </div>)
 
 }

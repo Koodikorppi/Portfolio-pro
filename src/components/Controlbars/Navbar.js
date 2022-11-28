@@ -8,8 +8,8 @@ const Navbar = () => {
     const {navLinks} = useContext(SectionContext)
 
     return(<div className="Navbar">
-        {navLinks.map((l) => {
-            return(<LinkButton/>)
+        {navLinks.map((l, index) => {
+            return(<LinkButton key={index} data={l}/>)
         })}
 
     </div>)

@@ -4,11 +4,15 @@ export const SectionContext = createContext({
     text: null,
     font: null,
     background: null,
-    NavLinks: [],
+    navLinks: [],
     layout: null,
+    sectionData: null,
+    activeSection: null,
     setText: () => {},
     setFont: () => {},
     setBackground: () => {},
     setNavlinks: () => {},
-    setLayout: () => {}
+    setLayout: () => {},
+    setSectionData: () => {},
+    setActiveSection: () => {}
 })
