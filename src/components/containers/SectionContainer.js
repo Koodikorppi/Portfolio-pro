@@ -14,7 +14,7 @@ const SectionContainer = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
 
     const handleSave = async () => {
-        if(header !== ""){
+        if(header !== "" || context.activeSection !== null){
             const dataJson = []
             let currSection = context.activeSection !== null ? {name: header, id: context.activeSection.id} : {name: header, id: uuidv4()}
             Object.keys(context.sectionData).forEach(e => {
@@ -22,8 +22,8 @@ const SectionContainer = () => {
             })
                 try {
                     console.log(dataJson)
-                    saveData(dataJson)
-                    /*await sendRequest(
+                    //saveData(dataJson)
+                    await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/save`,
                       'POST',
                       JSON.stringify({
@@ -31,9 +31,9 @@ const SectionContainer = () => {
                       }),
                       {
                         'Content-Type': 'application/json',
-                        'authenticationToken': `${auth.token},${auth.userId}`
+                        'authorizationToken': `${auth.token},${auth.userId}`
                       }
-                    );*/
+                    );
                     if(context.activeSection === null){
                       context.setNavlinks(prev => {
                         return [...prev, currSection]

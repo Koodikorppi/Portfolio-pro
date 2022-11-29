@@ -24,10 +24,15 @@ const deleteData = (section) => {
 
 const getSections = () => {
     const storedData = JSON.parse(localStorage.getItem('sectionData')) !== undefined ? JSON.parse(localStorage.getItem('sectionData')) : {};
-    const navlinks = Object.keys(storedData).map((d) => {
-        return {id: d, name: storedData[d].header}
-    })
-    return navlinks;
+    if(storedData === null || storedData === undefined){
+        return []
+    } else {
+        const navlinks = Object.keys(storedData).map((d) => {
+            return {id: d, name: storedData[d].header}
+        })
+        return navlinks;
+    }
+
 }
 
 export {saveData, loadData, deleteData, getSections}
