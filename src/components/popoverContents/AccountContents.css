@@ -1,0 +1,4 @@
+.accountContents{
+    display: flex;
+    flex-direction: column;
+}
