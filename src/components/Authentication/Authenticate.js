@@ -21,7 +21,7 @@ const Authenticate = () => {
     const [show, setShow] = useState(false)
     const navigate = useNavigate();
 
-    const [formState, inputHandler, setFormData] = useForm(
+    const {formState, inputHandler, setFormData} = useForm(
       {
         username: {
           value: '',
@@ -49,7 +49,7 @@ const Authenticate = () => {
               'Content-Type': 'application/json'
             }
           );
-          auth.login(response.userId, response.token);
+          auth.login(response.userId, response.token, response.url);
         } catch (err) {
           console.log(err)
           console.log('failed request')

@@ -36,7 +36,3 @@ const getSections = () => {
 }
 
 export {saveData, loadData, deleteData, getSections}
-
-// localStorage.setItem('userData', JSON.stringify({userId: uid, token: token, expiration: tokenExpiration.toISOString()}))
-// localStorage.removeItem('userData');
-// const storedData = JSON.parse(localStorage.getItem('userData'));
