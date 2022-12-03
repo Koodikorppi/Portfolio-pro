@@ -15,7 +15,7 @@ const App = () => {
     <div className="App">
       <AuthContext.Provider value={
         {
-          isLoggedIn: true,
+          isLoggedIn: !!token,
           token: token,
           url: url,
           setUrl, setUrl,
@@ -26,7 +26,7 @@ const App = () => {
         }
       }>
         <Routes>
-          <Route path="/" element={true ? <UserPage /> : <AuthPage />} />
+          <Route path="/" element={!!token ? <UserPage /> : <AuthPage />} />
           <Route path="/preview" element={<PreviewPage />} />
           <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
         </Routes>
