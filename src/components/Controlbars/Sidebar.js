@@ -3,6 +3,8 @@ import PopperUnstyled from "@mui/base/PopperUnstyled";
 import './Sidebar.css'
 import PopoverContainer from "../common/PopoverContainer";
 import LayoutContents from "../popoverContents/LayoutContents";
+import AccountContents from "../popoverContents/AccountContents";
+import SettingsContents from "../popoverContents/SettingsContents";
 
 const Sidebar = () => {
     const [anchor, setAnchor] = useState(null);
@@ -38,10 +40,8 @@ const Sidebar = () => {
 
 
     return(<div className="Sidebar" id="sidebarID">
-        <button onClick={() => handleState('Account',  <div></div>) }><img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img></button>
-        <button onClick={() => handleState('Settings',  <div></div>)}><img src="/svg/cog.svg" alt="Settings" className={'Settings' === header ? 'active' : ''}></img></button>
-        <button onClick={() => handleState('Text',  <div></div>)}><img src="/svg/paragraph.svg" alt="Text" className={'Text' === header ? 'active' : ''}></img></button>
-        <button onClick={() => handleState('Font',  <div></div>)}><img src="/svg/text.svg" alt="Font" className={'Font' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Account',  <AccountContents/>) }><img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img></button>
+        <button onClick={() => handleState('Settings',  <SettingsContents/>)}><img src="/svg/cog.svg" alt="Settings" className={'Settings' === header ? 'active' : ''}></img></button>
         <button onClick={() => handleState('Layouts',  <LayoutContents/>)}><img src="/svg/layouts.svg" alt="Layouts" className={'Layouts' === header ? 'active' : ''}></img></button>
         <button onClick={() => handleState('Backgrounds',  <div></div>)}><img src="/svg/colors.svg" alt="Backgrounds" className={'Backgrounds' === header ? 'active' : ''}></img></button>
         <PopperUnstyled

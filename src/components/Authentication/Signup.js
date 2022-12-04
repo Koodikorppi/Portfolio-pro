@@ -5,7 +5,6 @@ import { VALIDATOR_MINLENGTH, VALIDATOR_EMAIL } from "../../utilities/validators
 
 const Signup = (props) => {
     const {onSubmitHandler, inputHandler, formState, isLoading} = props;
-    console.log(formState);
     const isSame = formState.inputs.password.value === formState.inputs.password2.value;
     return(<div className="inputform">
         <form onSubmit={onSubmitHandler}>

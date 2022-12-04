@@ -21,7 +21,6 @@ const SectionContainer = () => {
                 dataJson.push({gridId: e, layout: context.layout, sectionId: currSection.id, sectionName: currSection.name, type: context.sectionData[e].type, value: context.sectionData[e].data })
             })
                 try {
-                    console.log(dataJson)
                     //saveData(dataJson)
                     await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/save`,
