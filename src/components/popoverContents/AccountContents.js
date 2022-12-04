@@ -10,7 +10,7 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 
 // this component handles user settings like changing username, email or password. User can also delete account and decide if current portfolio has public viewing on.
 const AccountContents = () => {
-    const {isLoading, error, sendRequest} = useHttpClient();
+    const {isLoading, sendRequest} = useHttpClient();
     const emailForm = useForm({
         email: {
           value: '',
@@ -46,7 +46,6 @@ const AccountContents = () => {
     const isSame = passwordForm.formState.inputs.newPass1.value === passwordForm.formState.inputs.newPass2.value;
     return (
       <div className="accountContents">
-        <h3>Account Settings</h3>
         <form onSubmit={handlePasswordChange}>
           <h3>Change Password</h3>
           <Input
@@ -87,9 +86,9 @@ const AccountContents = () => {
             </ButtonUnstyled>
           </div>
         </form>
-        
+
         <form onSubmit={handleEmailChange}>
-          
+
           <h3>Change Email</h3>
           <Input
             element="input"

@@ -7,13 +7,10 @@ import { baseLayoutData } from "../layouts/baseGrids";
 
 
 
-const LayoutContents = () => {
+const LayoutContents = ({close}) => {
     const context = useContext(SectionContext)
     const [open, setOpen] = useState(false)
     const [current, setCurrent] = useState(context.layout)
-    //<button onClick={() => handleState('Account',  <div></div>) }>
-    //<img src="/svg/account.svg" alt="Account" className={'Account' === header ? 'active' : ''}></img>
-    //</button>
 
     const layouts = ['gridLayout',2,3,4,5]
     const layout_names = ['Grid','Image gallery','Video gallery','Side-scroller','Form']
@@ -33,6 +30,7 @@ const LayoutContents = () => {
 
     const handleYes = () => {
         setOpen(false)
+        close(null)
         context.setLayout(current)
         context.setSectionData(baseLayoutData[current])
     }

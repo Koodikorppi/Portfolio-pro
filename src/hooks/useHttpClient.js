@@ -2,7 +2,6 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   const activeHttpRequests = useRef([]);
 
@@ -24,22 +23,16 @@ export const useHttpClient = () => {
       );
 
       if (!response.ok) {
-        throw new Error(data.message)
+        throw new Error(JSON.parse(data).body)
       }
       setIsLoading(false);
       return data;
 
     } catch (err) {
-      setError(err.message)
       setIsLoading(false);
       throw err;
     }
   }, []);
-
-  const clearError = () => {
-    setError(null)
-  }
-
 
   useEffect(() => {
     return () => {
@@ -47,5 +40,5 @@ export const useHttpClient = () => {
     }
   }, []);
 
-  return {isLoading, error, sendRequest, clearError}
+  return {isLoading, sendRequest}
 };

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Button } from 'semantic-ui-react'
 import Signup from './Signup';
 import Login from './Login';
@@ -6,8 +6,8 @@ import '../../styles/Authentication.css';
 import { AuthContext } from '../../contexts/AuthContext';
 import {useHttpClient} from '../../hooks/useHttpClient';
 import { useForm } from '../../hooks/useForm';
-import { Message } from 'semantic-ui-react';
 import { useNavigate } from 'react-router';
+
 
 const AuthMode = {
   signup: 'signup',
@@ -19,7 +19,9 @@ const Authenticate = () => {
     const [loginMode, setLoginMode] = useState(AuthMode.login);
     const {isLoading, error, sendRequest} = useHttpClient();
     const [show, setShow] = useState(false)
+    const [message, setMessage] = useState("")
     const navigate = useNavigate();
+
 
     const {formState, inputHandler, setFormData} = useForm(
       {
@@ -50,9 +52,10 @@ const Authenticate = () => {
             }
           );
           auth.login(response.userId, response.token, response.url);
+          navigate("/user")
         } catch (err) {
-          console.log(err)
-          console.log('failed request')
+          setMessage(err.message)
+          setShow(true)
         }
       } else {
         try {
@@ -69,18 +72,13 @@ const Authenticate = () => {
             }
           );
           setShow(true)
+          setMessage("Verification link has benn sent to your email. Please click it to verify account.")
         } catch (err) {
-          console.log(err)
-          console.log('failed request')
+          setMessage(err.message)
+          setShow(true)
         }
       }
     };
-
-    useEffect(() => {
-      if(show){
-        setTimeout(() => setShow(false), 5000)
-      }
-    }, [show])
 
     const switchModeHandler = (mode) => {
       if (mode == AuthMode.login) {
@@ -119,7 +117,16 @@ const Authenticate = () => {
       }
 
       setLoginMode(mode);
+      setShow(false)
+      setMessage("")
     }
+
+    useEffect(() => {
+      if(show){
+        setTimeout(() => setShow(false), 5000)
+      }
+    }, [show])
+
 
     const mode = loginMode === AuthMode.login ?
       <Login
@@ -134,6 +141,7 @@ const Authenticate = () => {
       formState={formState}
       isLoading={isLoading}
       />
+
       return (
         <div className='authentication'>
           <div className='login_wrapper'>
@@ -143,9 +151,9 @@ const Authenticate = () => {
           </div>
             {mode}
         </div>
-        {show ? <Message
-        content='we have sent confirmation to your email. Please click the link in the message to verify your account.'
-        /> : <></>}
+        {show && <div className={error ? 'authMessage-alert': 'authMessage'}>
+            <p>{message}</p>
+          </div>}
         </div>)
 }
 export default Authenticate;
