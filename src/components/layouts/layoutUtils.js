@@ -20,13 +20,13 @@ const handleType = (type, propkey, data, setter) => {
         case "select":
             return(<div key={propkey} className="container"><TypeSelector propkey={propkey} setter={setter}/></div>)
         case "text":
-            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)}>delete</button><TextEditComponent propkey={propkey} setter={setter} data={data}/></div>)
+            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)} className="trash_icon"><img src="/svg/trash.svg" alt="delete"></img></button><TextEditComponent propkey={propkey} setter={setter} data={data}/></div>)
         case "video":
-            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)}>delete</button><VideoEditComponent propkey={propkey} setter={setter} data={data}/></div>)
+            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)} className="trash_icon"><img src="/svg/trash.svg" alt="delete"></img></button><VideoEditComponent propkey={propkey} setter={setter} data={data}/></div>)
         case "image":
-            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)}>delete</button><ImageEditComponent propkey={propkey} setter={setter} data={data}/></div>)
+            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)} className="trash_icon"><img src="/svg/trash.svg" alt="delete"></img></button><ImageEditComponent propkey={propkey} setter={setter} data={data}/></div>)
         case "button":
-            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)}>delete</button><LinkComponent propkey={propkey} setter={setter} data={data}/></div>)
+            return(<div key={propkey} className="container"><button onClick={() => handleDelete(propkey, setter)} className="trash_icon"><img src="/svg/trash.svg" alt="delete"></img></button><LinkComponent propkey={propkey} setter={setter} data={data}/></div>)
         default:
             return(<></>)
     }

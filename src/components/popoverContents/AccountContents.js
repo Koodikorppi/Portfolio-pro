@@ -87,7 +87,9 @@ const AccountContents = () => {
             </ButtonUnstyled>
           </div>
         </form>
+        
         <form onSubmit={handleEmailChange}>
+          
           <h3>Change Email</h3>
           <Input
             element="input"
@@ -110,8 +112,9 @@ const AccountContents = () => {
         <ButtonUnstyled
           type="submit"
           data-cy="delete_submit_btn"
+          className="delete_btn"
         >
-          Delete
+          Delete Account
         </ButtonUnstyled>
       </div>
     );

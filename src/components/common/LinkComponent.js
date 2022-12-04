@@ -15,8 +15,8 @@ const LinkComponent = ({propkey, setter, data}) => {
 
     return(<div className="linkcomponent">
         {(data === null || data === undefined) && <div className="linkbuilder">
-            <input defaultValue={"...button label"} value={label} type={"text"} onChange={(e) => {setLabel(e.target.value)}}/>
-            <input defaultValue={"...url link"} value={link} type={"text"} onChange={(e) => setLink(e.target.value)}/>
+            <input defaultValue={"...button label"} value={label} type={"text"} onChange={(e) => {setLabel(e.target.value)}} placeholder="Display text..."/>
+            <input defaultValue={"...url link"} value={link} type={"text"} onChange={(e) => setLink(e.target.value)} placeholder="url..."/>
             <button onClick={() => buildButton()}>Build link button</button>
             </div>}
         {(data !== null && data !== undefined) && <button onClick={() => {window.open(data.split("|")[1])}}>{data.split("|")[0]}</button>}

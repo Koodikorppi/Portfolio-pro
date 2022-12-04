@@ -125,7 +125,7 @@ const SettingsContents = () => {
         <div className="publishDiv">
             <p>Publish Site</p>
         <SwitchUnstyled component={Root} checked={publish} onChange={handlePublicChange}/>
-        <p>{publish ? "portfolio is currently public" : "portfolio isnt currently public"}</p>
+        <i><span>&#9432;</span> {publish ? "Portfolio is currently public" : "Portfolio isn't currently public"}</i>
         </div>
         <form onSubmit={handleUrlUpdate} className="addressDiv">
           <h3>Update portfolio name</h3>
@@ -133,7 +133,7 @@ const SettingsContents = () => {
             element="input"
             id="url"
             type="text"
-            label="portfolio name (max 50 characters)"
+            label="Portfolio name (max 50 characters)"
             validators={[VALIDATOR_MAXLENGTH(50), VALIDATOR_URL(baseUrl)]}
             errorText="name contains invalid characters or is too long (max 50 characters)"
             onInput={inputHandler}

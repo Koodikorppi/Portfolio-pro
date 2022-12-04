@@ -19,15 +19,36 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 5px;
+    padding: 1em 2em;
     border-radius: 5px;
-    width: 300px;
+    width: 350px;
 }
 
 .button-row{
     display: flex;
     width: 100%;
     justify-content: space-evenly;
+}
+.button-row button{
+    padding: 0.75em 2em;
+    border-radius: 0.25em;
+    border: solid thin #0072bd;
+    background-color: inherit;
+    color:  #0072bd;
+}
+.button-row button:last-child{
+    background-color: #0072bd;
+    color: white;
+    border: solid thin ;
+}
+.button-row button:last-child:hover{
+    background-color: #0099ff;
+    cursor: pointer;
+}
+.button-row button:first-child:hover{
+    background-color: #0099ff;
+    color: white;
+    cursor: pointer;
 }
 .layout_button{
     margin: 0.5em 0;
