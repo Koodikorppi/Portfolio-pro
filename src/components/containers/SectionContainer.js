@@ -11,7 +11,7 @@ const SectionContainer = () => {
     const context = useContext(SectionContext)
     const [header, setHeader] = useState("")
     const auth = useContext(AuthContext);
-    const {isLoading, error, sendRequest} = useHttpClient();
+    const {isLoading, sendRequest} = useHttpClient();
 
     const handleSave = async () => {
         if(header !== "" || context.activeSection !== null){

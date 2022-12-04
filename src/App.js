@@ -18,7 +18,7 @@ const App = () => {
           isLoggedIn: !!token,
           token: token,
           url: url,
-          setUrl, setUrl,
+          setUrl: setUrl,
           login: login,
           logout: logout,
           refreshToken: refreshToken,
@@ -26,8 +26,10 @@ const App = () => {
         }
       }>
         <Routes>
-          <Route path="/" element={!!token ? <UserPage /> : <AuthPage />} />
+          <Route path="/" element={<AuthPage/>} />
+          <Route path="/user" element={<UserPage />} />
           <Route path="/preview" element={<PreviewPage />} />
+          <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
           <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
         </Routes>
       </AuthContext.Provider>

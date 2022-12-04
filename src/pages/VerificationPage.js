@@ -12,7 +12,6 @@ export const VerificationPage = () => {
     useEffect(() => {
         (async () => {
         try {
-          console.log(params)
             const response = await sendRequest(
               `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/verify`,
               'POST',
