@@ -13,7 +13,7 @@ const TextEditComponent = ({propkey, setter, data}) => {
 
 
     return(<div className="textcomponent">
-        <textarea defaultValue={data} onChange={(e) => setText(e.target.value)} onBlur={() => outFocus()}></textarea>
+        <textarea defaultValue={data} onChange={(e) => setText(e.target.value)} onBlur={() => outFocus()} placeholder="Write text..."></textarea>
     </div>)
 
 }

@@ -1,15 +1,33 @@
 .settingsContents{
-
+    color: white;
 }
-
-.contentsContainer{
-    
+.publishDiv i{
+    display: block;
 }
-
+.publishDiv i span{
+    float: left;
+    margin-right: 0.25em;
+    height: 2em;
+}
 .publishDiv{
-
+    padding-bottom: 0.5em;
+    border-bottom: solid thin grey;
 }
-
-.addressDiv{
-
+.addressDiv label{
+    font-weight: normal;
+    color: #999;
+}
+.addressDiv .ButtonUnstyled-root{
+    padding: 0.5em 1em;
+    background-color: orange;
+    border: none;
+    border-radius: 0.35em;
+    color: black;
+}
+.addressDiv .ButtonUnstyled-root:hover:not(.Mui-disabled){
+    cursor: pointer;
+    background-color: yellow;
+}
+.addressDiv .Mui-disabled{
+    background-color: #999;
 }
