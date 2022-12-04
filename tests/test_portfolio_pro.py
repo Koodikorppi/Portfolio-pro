@@ -83,9 +83,36 @@ def test_post_login_success():
     assert len(json_res["userId"]) > 10
 
 # SAVE
-def test_post_save_success():
+def test_post_save_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"token": user_token}
 
     r = requests.post(f'{URL}/user/save', headers=headers, json=data)
     assert r.status_code == 401
+
+# UPDATE VISIBILITY
+def test_updatepreviewstatus_fail():
+    headers = {'Content-Type': 'application/json'}
+    data = {"token": user_token, "is_public": True}
+
+    r = requests.post(f'{URL}/user/updatepreviewstatus', headers=headers, json=data)
+    
+    json_res = r.json()
+    
+    errorMessage=json_res["errorMessage"]
+    
+    print(errorMessage)
+    error_res = json.loads(errorMessage)
+    assert "error" in error_res['body']
+
+# VERIFY
+def test_verify_fail():
+    headers = {'Content-Type': 'application/json'}
+    data = {"token": user_token, "id": "some_user_id", "verification": "some_verification"}
+
+    r = requests.post(f'{URL}/user/verify', headers=headers, json=data)
+    
+    json_res = r.json()
+    print(json_res)
+    assert "No user found" in json_res
+    
