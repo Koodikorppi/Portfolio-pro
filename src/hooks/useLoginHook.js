@@ -7,18 +7,16 @@ export const useLoginHook = () => {
   const [url, setUrl] = useState("")
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
   const [userId, setUserId] = useState(false);
+  const [publish, setPublish] = useState(false)
 
-  const login = useCallback((uid, token, url, name, expdate) => {
+  const login = useCallback((uid, token, url, publish, expdate) => {
     setUserId(uid);
     setToken(token);
-    if(url === ""){
-      setToken("https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/preview/" + name)
-    } else {
-      setUrl(url)
-    }
+    setUrl(url)
+    setPublish(publish)
     const tokenExpiration = expdate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpiration);
-    localStorage.setItem('userData', JSON.stringify({userId: uid, token: token, url: url, expiration: tokenExpiration.toISOString()}))
+    localStorage.setItem('userData', JSON.stringify({userId: uid, token: token, url: url, publish: publish, expiration: tokenExpiration.toISOString()}))
   }, []);
 
   const logout = useCallback(() => {
@@ -49,9 +47,9 @@ export const useLoginHook = () => {
     if (storedData && storedData.token &&
       new Date(storedData.expiration) > new Date()
     ) {
-      login(storedData.userId, storedData.token, storedData.url, "", new Date(storedData.expiration));
+      login(storedData.userId, storedData.token, storedData.url, storedData.publish, new Date(storedData.expiration));
     }
   }, [login]);
 
-  return {token, userId, url, setUrl, login, logout, refreshToken}
+  return {token, userId, url, publish, setPublish, setUrl, login, logout, refreshToken}
 }

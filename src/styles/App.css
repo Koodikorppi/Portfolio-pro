@@ -8,3 +8,18 @@ body{
     width: 100vw;
     height: 100vh;
 }
+
+.message{
+    display: flex;
+    border-radius: 1em;
+    border: solid 2px #222;
+    padding: 1em 1em;
+}
+
+.message-alert{
+    display: flex;
+    border-radius: 1em;
+    border: solid 2px red;
+    padding: 1em 1em;
+    color: red
+}

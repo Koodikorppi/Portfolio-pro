@@ -5,9 +5,11 @@ export const AuthContext = createContext({
     token: null,
     userId: null,
     url: null,
+    publish: null,
     tokenExpirationDate: null,
     setUrl: () => {},
     login: () => {},
     logout: () => {},
-    refreshToken: () => {}
+    refreshToken: () => {},
+    setPublish: () => {}
 })

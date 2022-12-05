@@ -9,44 +9,58 @@ import { saveData, deleteData } from "./mockupdata";
 
 const SectionContainer = () => {
     const context = useContext(SectionContext)
-    const {isLoading, sendRequest} = useHttpClient();
+    const auth = useContext(AuthContext)
+    const {isLoading, error, sendRequest} = useHttpClient();
 
     const handleSave = async () => {
         if(context.sectionName !== ""){
             const dataJson = []
             let currSection = context.sectionId !== null ? context.sectionId : uuidv4()
+            let position = 0;
+            let navIndex = 0;
+            if(context.sectionId === null && context.navLinks.length > 0){
+              position = context.navLinks[context.navLinks.length - 1].position + 1
+            } else if (context.navLinks.length > 0){
+              const navIndex = context.navLinks.findIndex((d) => {
+                if(d.id === currSection){
+                  return true;
+                }
+              })
+              position = context.navLinks[navIndex].position
+            }
             context.sectionData.forEach((e, row) => {
                 e.forEach((d, index) => {
-                  dataJson.push({gridId: index, slotId: row, layout: context.layout, sectionId: currSection, sectionName: context.sectionName, type: d.type, value: d.data })
+                  dataJson.push({posid: index, slotid: row, type: d.type, value: d.data !== undefined ? d.data : "" })
                 })
 
             })
                 try {
-                    saveData(dataJson)
-                    /*await sendRequest(
+                    //saveData(dataJson)
+                    await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/save`,
                       'POST',
                       JSON.stringify({
+                        id: currSection,
+                        userId: auth.userId,
+                        name: context.sectionName,
+                        layout: context.layout,
+                        background: "",
+                        position: position,
                         data: dataJson
                       }),
                       {
                         'Content-Type': 'application/json',
                         'authorizationToken': `${auth.token},${auth.userId}`
                       }
-                    );*/
+                    );
                     if(context.sectionId === null){
                       context.setNavlinks(prev => {
-                        return [...prev, {name: context.sectionName, id: currSection}]
+                        return [...prev, {name: context.sectionName, id: currSection, position: position}]
                     })
                     context.setSectionId(currSection)
                     } else {
-                      const index = context.navLinks.findIndex((d) => {
-                        if(d.id === currSection){
-                          return true;
-                        }
-                      })
                       const templist = [...context.navLinks]
-                      templist[index].name = context.sectionName;
+                      templist[navIndex].name = context.sectionName;
                       context.setNavlinks(templist);
                     }
                   } catch (err) {
@@ -58,19 +72,33 @@ const SectionContainer = () => {
         }
     }
 
-    const handleDel = () => {
-      deleteData(context.sectionId)
-      context.setNavlinks(prev => {return prev.filter(e => e.id !== context.sectionId)})
-      context.setSectionName("")
-      context.setBackground(null)
-      context.setLayout("gridLayout")
-      context.setSectionData([
-        [
-         {type: ""}
-        ]
-     ])
-      context.setSectionId(null)
-
+    const handleDel = async () => {
+      try {
+        await sendRequest(
+          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/deletesection`,
+          "POST",
+          JSON.stringify({
+            userId: auth.userId,
+            sectionId: context.sectionId
+          }),
+          {
+            "Content-Type": "application/json",
+            authorizationToken: `${auth.token},${auth.userId}`,
+          }
+        );
+        context.setNavlinks(prev => {return prev.filter(e => e.id !== context.sectionId)})
+        context.setSectionName("")
+        context.setBackground(null)
+        context.setLayout("gridLayout")
+        context.setSectionData([
+          [
+           {type: ""}
+          ]
+       ])
+        context.setSectionId(null)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     const newSection = () => {

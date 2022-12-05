@@ -2,11 +2,12 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const [error, setError] = useState(false)
   const activeHttpRequests = useRef([]);
 
   const sendRequest = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
     setIsLoading(true);
+    setError(false)
     const requestAbortController = new AbortController();
     activeHttpRequests.current.push(requestAbortController);
     try {
@@ -23,12 +24,14 @@ export const useHttpClient = () => {
       );
 
       if (!response.ok) {
-        throw new Error(JSON.parse(data).body)
+        console.log(data)
+        throw new Error(data.message)
       }
       setIsLoading(false);
       return data;
 
     } catch (err) {
+      setError(true)
       setIsLoading(false);
       throw err;
     }
@@ -40,5 +43,5 @@ export const useHttpClient = () => {
     }
   }, []);
 
-  return {isLoading, sendRequest}
+  return {isLoading, error, sendRequest}
 };

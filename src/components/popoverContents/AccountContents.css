@@ -35,3 +35,44 @@
     border-bottom: solid thin grey;
     padding-bottom: 0.5em;
 }
+
+.delete-box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    padding: 1em 2em;
+    border-radius: 5px;
+    width: 350px;
+}
+
+.delete-button-row{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.delete-button-row button{
+    padding: 0.75em 2em;
+    border-radius: 0.25em;
+    border: solid thin #0072bd;
+    background-color: inherit;
+    color:  #0072bd;
+}
+.delete-button-row .Mui-disabled{
+    background-color: #999;
+}
+.delete-button-row button:last-child{
+    background-color: #0072bd;
+    color: white;
+    border: solid thin ;
+}
+.delete-button-row button:last-child:hover:not(.Mui-disabled){
+    background-color: #0099ff;
+    cursor: pointer;
+}
+.delete-button-row button:first-child:hover:not(.Mui-disabled){
+    background-color: #0099ff;
+    color: white;
+    cursor: pointer;
+}

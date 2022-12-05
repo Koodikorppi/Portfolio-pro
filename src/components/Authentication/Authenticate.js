@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import {useHttpClient} from '../../hooks/useHttpClient';
 import { useForm } from '../../hooks/useForm';
 import { useNavigate } from 'react-router';
+import { MessageBox } from '../common/MessageBox';
 
 
 const AuthMode = {
@@ -18,7 +19,6 @@ const Authenticate = () => {
     const auth = useContext(AuthContext);
     const [loginMode, setLoginMode] = useState(AuthMode.login);
     const {isLoading, error, sendRequest} = useHttpClient();
-    const [show, setShow] = useState(false)
     const [message, setMessage] = useState("")
     const navigate = useNavigate();
 
@@ -40,6 +40,7 @@ const Authenticate = () => {
       event.preventDefault();
       if (loginMode == AuthMode.login) {
         try {
+          console.log(formState)
           const response = await sendRequest(
             `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/login`,
             'POST',
@@ -51,11 +52,10 @@ const Authenticate = () => {
               'Content-Type': 'application/json'
             }
           );
-          auth.login(response.userId, response.token, response.url);
+          auth.login(response.userId, response.token, response.userUrl, response.public);
           navigate("/user")
         } catch (err) {
           setMessage(err.message)
-          setShow(true)
         }
       } else {
         try {
@@ -71,11 +71,9 @@ const Authenticate = () => {
               'Content-Type': 'application/json'
             }
           );
-          setShow(true)
-          setMessage("Verification link has benn sent to your email. Please click it to verify account.")
+          setMessage("Verification link has been sent to your email. Please click it to verify account.")
         } catch (err) {
           setMessage(err.message)
-          setShow(true)
         }
       }
     };
@@ -115,18 +113,9 @@ const Authenticate = () => {
             }
           }, false);
       }
-
       setLoginMode(mode);
-      setShow(false)
       setMessage("")
     }
-
-    useEffect(() => {
-      if(show){
-        setTimeout(() => setShow(false), 5000)
-      }
-    }, [show])
-
 
     const mode = loginMode === AuthMode.login ?
       <Login
@@ -151,9 +140,7 @@ const Authenticate = () => {
           </div>
             {mode}
         </div>
-        {show && <div className={error ? 'authMessage-alert': 'authMessage'}>
-            <p>{message}</p>
-          </div>}
+        {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
         </div>)
 }
 export default Authenticate;

@@ -4,7 +4,7 @@ import SectionContainer from "../components/containers/SectionContainer";
 import Navbar from "../components/Controlbars/Navbar";
 import { SectionContext } from "../contexts/SectionContext";
 import './UserPage.css'
-import { getSections } from "../components/containers/mockupdata";
+import { useHttpClient } from "../hooks/useHttpClient";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 
@@ -17,19 +17,43 @@ export const UserPage = () => {
   const [layout, setLayout] = useState(null)
   const auth = useContext(AuthContext)
   const navigate = useNavigate();
+  const {isLoading, error, sendRequest} = useHttpClient();
 
   useEffect(() => {
-    const links = getSections()
-    setNavlinks(links)
-    setLayout("gridLayout")
-    setSectionData([
+    if(auth.isLoggedIn){
+    (async() => {
+    try {
+      const response = await sendRequest(
+        `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/loadsections`,
+        "POST",
+        JSON.stringify({
+          userId: auth.userId,
+        }),
+        {
+          "Content-Type": "application/json",
+          authorizationToken: `${auth.token},${auth.userId}`,
+        }
+      );
+      const navs = response.sort((a, b) => {
+        return a.sectionPosition - b.sectionPosition;
+      });
+      console.log()
+      setNavlinks(navs)
+      setLayout("gridLayout")
+      setSectionData([
       [
        {type: ""}
       ]
    ])
-  },[])
+    } catch (error) {
+      console.log(error)
+    }
+  })()
+  } else {
+    navigate('/')
+  }
+  },[auth.isLoggedIn])
 
-  if(auth.isLoggedIn){
     return (
       < SectionContext.Provider value={
         {
@@ -56,9 +80,6 @@ export const UserPage = () => {
       </div>
       </ SectionContext.Provider>
     );
-} else {
-    navigate('/')
-}
 }
 
 export default UserPage;

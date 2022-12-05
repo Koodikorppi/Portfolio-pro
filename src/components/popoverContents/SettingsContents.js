@@ -8,7 +8,7 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import { styled } from '@mui/system';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 import { AuthContext } from "../../contexts/AuthContext";
-import { v4 as uuidv4 } from 'uuid';
+import { MessageBox } from "../common/MessageBox";
 
 const orange = {
     500: '#ffa500'
@@ -95,12 +95,12 @@ const Root = styled('span')(
     `,
   );
 
-const baseUrl = "https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/preview/"
+const baseUrl = "http://localhost:3000/preview/"
 
 const SettingsContents = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
-    const [publish, setPublish] = useState(false)
     const auth = useContext(AuthContext)
+    const [message, setMessage] = useState("")
     const {formState, inputHandler, setFormData} = useForm({
         url: {
           value: '',
@@ -108,15 +108,53 @@ const SettingsContents = () => {
         }
       })
 
-    const handlePublicChange = () => {
-        setPublish(!publish)
-    }
+    const handlePublicChange = async () => {
+      try {
+        console.log(auth.userId)
+        await sendRequest(
+                    `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/updatepreviewstatus`,
+                    'POST',
+                    JSON.stringify({
+                      userId: auth.userId,
+                      is_public: !auth.publish
+                    }),
+                    {
+                      'Content-Type': 'application/json',
+                      'authorizationToken': `${auth.token},${auth.userId}`
+                    }
+                  );
+        const storedData = JSON.parse(localStorage.getItem('userData'));
+        localStorage.setItem('userData', JSON.stringify({...storedData, publish: !auth.publish}))
+        auth.setPublish(!auth.publish)
+      } catch (error) {
+        setMessage(error.message)
+      }
+    };
 
     const handleUrlUpdate = async (e) => {
         e.preventDefault()
-        const finalUrl = `${baseUrl + formState.Input.url.value}`
-        auth.setUrl(finalUrl)
-    }
+        const finalUrl = `${baseUrl + formState.inputs.url.value}`
+        try {
+          await sendRequest(
+                      `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/updatepreviewstatus`,
+                      'POST',
+                      JSON.stringify({
+                        userId: auth.userId,
+                        url: finalUrl
+                      }),
+                      {
+                        'Content-Type': 'application/json',
+                        'authorizationToken': `${auth.token},${auth.userId}`
+                      }
+                    );
+          const storedData = JSON.parse(localStorage.getItem('userData'));
+          localStorage.setItem('userData', JSON.stringify({...storedData, url: finalUrl}))
+          auth.setUrl(finalUrl)
+        } catch (error) {
+          setMessage(error.message)
+        }
+    };
+
     const empty = formState.inputs.url.value !== "";
     return (
       <div className="settingsContents">
@@ -124,8 +162,8 @@ const SettingsContents = () => {
         <div className="conentsContainer">
         <div className="publishDiv">
             <p>Publish Site</p>
-        <SwitchUnstyled component={Root} checked={publish} onChange={handlePublicChange}/>
-        <i><span>&#9432;</span> {publish ? "Portfolio is currently public" : "Portfolio isn't currently public"}</i>
+        <SwitchUnstyled component={Root} disabled={auth.url === ""} checked={auth.publish} onChange={handlePublicChange}/>
+        <i><span>&#9432;</span> {auth.publish ? "Portfolio is currently public" : "Portfolio isn't currently public"}</i>
         </div>
         <form onSubmit={handleUrlUpdate} className="addressDiv">
           <h3>Update portfolio name</h3>
@@ -146,7 +184,8 @@ const SettingsContents = () => {
               Update
             </ButtonUnstyled>
         </form>
-        <p>Current url: {auth.url}</p>
+        {auth.url !== "" ? <p>Current url: {auth.url}</p> : <p>Portfolio needs name to be public</p>}
+        {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
         </div>
       </div>
     );
