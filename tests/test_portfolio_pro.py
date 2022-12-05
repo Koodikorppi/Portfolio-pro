@@ -126,7 +126,7 @@ def test_post_loadpreviewsections_fail():
 
     json_res = r.json()
     errorMessage=json_res["errorMessage"]
-    
+
     assert "error" in errorMessage
     assert "401" in errorMessage
 
@@ -140,7 +140,7 @@ def test_post_loadpreviewcomponents_fail():
 
     json_res = r.json()
     errorMessage=json_res["errorMessage"]
-    
+
     assert "error" in errorMessage
     assert "401" in errorMessage
 
