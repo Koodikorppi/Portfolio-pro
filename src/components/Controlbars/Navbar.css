@@ -8,6 +8,8 @@
     height: var(--toolbar-width);
     background-color: rgb(71, 71, 71);
     position: fixed;
+    gap: 1em;
+    padding-right: 1em;
     left: var(--toolbar-width);
     color: white;
 }

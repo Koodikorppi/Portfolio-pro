@@ -6,33 +6,68 @@
     width: calc(100vw - 40px);
     height: calc(100vh - 40px);
 }
-
-.section-header{
+.topRow{
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    min-height: 5%;
+    height: 10%;
     padding: 0.5em 1em;
 }
 
-.section-content{
+.section-header{
     display: flex;
-    justify-content: center;
+    width: 50%;
+    min-height: 5%;
+    height: 100%;
+    padding: 0.5em 1em;
+}
+
+.section-header input{
+    display: flex;
     width: 100%;
-    height: 90%;
-    overflow-y: auto;
+    font-size: 60px;
 }
 
 .section-save{
     display: flex;
     width: 100%;
-    height: 5%;
+    height: 100%;
     justify-content: flex-end;
+    align-items: center;
 }
 
-.section-save button{
+.section-buttons{
+    display: flex;
+    gap: 1em;
+}
+
+.slotAdd{
+    display: flex;
+}
+
+.slotAdd button {
+    display: flex;
+    padding: 0.1em 0.1em;
+    background-color: #222;
+    width: 10em;
+    text-align: center;
+    align-items: center;
+    color: white;
+    height: 4.5em;
+    border-radius: 5px;
+    justify-content: space-around;
+
+}
+
+.section-actions{
+    display: flex;
+}
+
+.section-actions button{
     background-color: transparent;
     border: none;
     text-align: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,16 +78,23 @@
     height: 4.5em;
 
 }
-.section-save button:hover{
+.section-buttons button:hover{
     cursor: pointer;
     color: orange;
 }
-.section-save button:hover img{
+.section-buttons button:hover img{
     cursor: pointer;
     filter: invert(40%) sepia(86%) saturate(386%) hue-rotate(349deg) brightness(100%) contrast(98%);
-
 }
-.section-save img{
+.section-actions img{
     height: 25px;
+}
+
+.section-content{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 90%;
 
 }
+

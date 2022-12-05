@@ -3,7 +3,6 @@ import { SectionContext } from "../../contexts/SectionContext";
 import './LayoutContents.css'
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
-import { baseLayoutData } from "../layouts/baseGrids";
 
 
 
@@ -32,7 +31,11 @@ const LayoutContents = ({close}) => {
         setOpen(false)
         close(null)
         context.setLayout(current)
-        context.setSectionData(baseLayoutData[current])
+        context.setSectionData([
+          [
+           {type: ""}
+          ]
+       ])
     }
     return(<div className="LayoutContents">
         {layouts.map((l, index) => {

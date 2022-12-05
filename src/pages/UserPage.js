@@ -9,9 +9,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 
 export const UserPage = () => {
-  const [activeSection, setActiveSection] = useState(null);
-  const [text, setText] = useState(null)
-  const [font, setFont] = useState(null)
+  const [sectionId, setSectionId] = useState(null)
+  const [sectionName, setSectionName] = useState("")
   const [sectionData, setSectionData] = useState(null)
   const [background, setBackground] = useState(null)
   const [navLinks, setNavlinks] = useState([])
@@ -22,26 +21,30 @@ export const UserPage = () => {
   useEffect(() => {
     const links = getSections()
     setNavlinks(links)
+    setLayout("gridLayout")
+    setSectionData([
+      [
+       {type: ""}
+      ]
+   ])
   },[])
 
   if(auth.isLoggedIn){
     return (
       < SectionContext.Provider value={
         {
-          text: text,
-          font: font,
+          sectionId: sectionId,
+          sectionName: sectionName,
           background: background,
           navLinks: navLinks,
           layout: layout,
           sectionData: sectionData,
-          activeSection: activeSection,
-          setText: setText,
-          setFont: setFont,
+          setSectionId: setSectionId,
+          setSectionName: setSectionName,
           setBackground: setBackground,
           setNavlinks: setNavlinks,
           setLayout: setLayout,
           setSectionData: setSectionData,
-          setActiveSection: setActiveSection
         }
       }>
       <div className="userpage">

@@ -1,25 +1,35 @@
 import React,  {useState} from "react";
 import './LinkComponent.css'
 
-const LinkComponent = ({propkey, setter, data}) => {
+const LinkComponent = ({index, row, setter, data}) => {
 
     const [link, setLink] = useState("")
     const [label, setLabel] = useState("")
+    const [message, setMessage] = useState("Only button will be shown in portfolio")
 
     const buildButton = () => {
-        setter(prev => {
-            return {...prev, [propkey]: {...prev[propkey],  data: `${label}|${link}`}}
-        })
+        try {
+            new URL(link)
+            setter((prev) => {
+                const newArr = [...prev]
+                newArr[row][index] = {...newArr[row][index], data: `${label}|${link}`}
+                return newArr})
+
+        } catch (error) {
+            setMessage("Not valid url!")
+        }
+
     }
 
 
     return(<div className="linkcomponent">
         {(data === null || data === undefined) && <div className="linkbuilder">
+            <p>{message}</p>
             <input defaultValue={"...button label"} value={label} type={"text"} onChange={(e) => {setLabel(e.target.value)}} placeholder="Display text..."/>
             <input defaultValue={"...url link"} value={link} type={"text"} onChange={(e) => setLink(e.target.value)} placeholder="url..."/>
             <button onClick={() => buildButton()}>Build link button</button>
             </div>}
-        {(data !== null && data !== undefined) && <button onClick={() => {window.open(data.split("|")[1])}}>{data.split("|")[0]}</button>}
+        {(data !== null && data !== undefined) && <button className="linkbutton" onClick={() => {window.open(data.split("|")[1])}}>{data.split("|")[0]}</button>}
     </div>)
 
 }

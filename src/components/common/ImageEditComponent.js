@@ -1,15 +1,16 @@
 import React from "react";
 import './ImageEditComponent.css'
 
-const ImageEditComponent = ({propkey, setter, data}) => {
+const ImageEditComponent = ({index, row, setter, data}) => {
 
     const imageSettings = (val) => {
         if(data !== null){
               URL.revokeObjectURL(data)
         }
-        setter(prev => {
-            return {...prev, [propkey]: {...prev[propkey],  data: val}}
-        })
+        setter((prev) => {
+                 const newArr = [...prev]
+                 newArr[row][index] = {...newArr[row][index], data: val}
+                 return newArr})
     }
 
 

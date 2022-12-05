@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { SectionContext } from "../../contexts/SectionContext";
 import { loadData } from "../containers/mockupdata";
+import './LinkButton.css'
 
 
 const LinkButton = ({data}) => {
@@ -8,21 +9,29 @@ const LinkButton = ({data}) => {
 
     const handleLoad = (id) => {
         const loadedData = loadData(id)
-        console.log(loadedData)
         context.setLayout(loadedData[0].layout)
-        context.setActiveSection({id: loadedData[0].sectionId, name: loadedData[0].sectionName})
-        let sectionData = {}
+        context.setSectionId(loadedData[0].sectionId)
+        context.setSectionName(loadedData[0].sectionName)
+        let tempdata = {}
+        const sectionData = []
         loadedData.forEach(element => {
-            sectionData = {
-                ...sectionData,
-                [element.gridId]: {type: element.type, data: element.value}
+            if(tempdata[element.slotId] === undefined){
+                tempdata[element.slotId] = []
             }
+            tempdata[element.slotId].push({index: element.gridId, type: element.type, data: element.value})
+        })
+
+        Object.keys(tempdata).forEach((d) => {
+            const list = tempdata[d].sort((a, b) => {
+                return a.index - b.index;
+            });
+            sectionData.push(list)
         })
         context.setSectionData(sectionData)
     }
 
 
-    return(<button onClick={() => handleLoad(data.id)}>{data.name}</button>)
+    return(<button className="navlink-button" onClick={() => handleLoad(data.id)}>{data.name}</button>)
 }
 
 export default LinkButton

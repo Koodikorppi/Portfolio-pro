@@ -1,10 +1,14 @@
 import React from "react";
 
-const EmptyComponent = ({propkey, setter}) => {
+const EmptyComponent = ({index, row, setter}) => {
 
     const handleClick = () => {
         setter((prev) => {
-             return {...prev, [propkey]: {type: 'select'}}})
+             console.log(prev)
+             const newArr = [...prev]
+             newArr[row][index] = {type: 'select'}
+             newArr[row][index + 1] = {type: ""}
+             return newArr})
     }
 
     return(<div>

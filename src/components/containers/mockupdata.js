@@ -4,6 +4,7 @@ const saveData = (data) => {
         ...storedData,
         [data[0].sectionId]: {
             header: data[0].sectionName,
+            layout: data[0].layout,
             data: [...data]}
     }
     localStorage.setItem('sectionData', JSON.stringify(json))
@@ -28,7 +29,7 @@ const getSections = () => {
         return []
     } else {
         const navlinks = Object.keys(storedData).map((d) => {
-            return {id: d, name: storedData[d].header}
+            return {id: d, name: storedData[d].header, layout: storedData[d].layout}
         })
         return navlinks;
     }
