@@ -19,11 +19,14 @@ assert PASS_WORD, "PASS_WORD is not set"
 pytest.token = ''
 pytest.userId = ''
 pytest.userUrl = ''
+pytest.auth_token = ''
+
 
 # api is running
 def test_get_api():
     r = requests.get(f'{URL}/')
     assert r.status_code == 401
+
 
 # signup
 def test_post_signup_missing_args_fail():
@@ -59,11 +62,15 @@ def test_post_login_missing_args_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"username": user_NAME}
     r = requests.post(f'{URL}/login', headers=headers, json=data)
-    assert r.status_code == 401
+    assert r.status_code == 200
 
     # AWS lambda: raise Exception(json.dumps(response))
-    json_res = json.loads(r.json())
-    assert json_res["message"] == 'Missing arguments'
+    json_res = r.json()
+    errorMessage=json_res["errorMessage"]
+    
+    assert "Missing arguments" in errorMessage
+    assert "401" in errorMessage
+
 
 def test_post_login_wrong_creds_fail():
     headers = {'Content-Type': 'application/json'}
@@ -73,6 +80,7 @@ def test_post_login_wrong_creds_fail():
 
     json_res = json.loads(r.json())
     assert 'Could not identify user' in json_res["message"]
+
 
 def test_post_login_success():
     headers = {'Content-Type': 'application/json'}
@@ -92,28 +100,26 @@ def test_post_login_success():
     assert len(pytest.token) > 10
     assert len(pytest.userId) > 10
 
+    pytest.auth_token = f'{pytest.token},{pytest.userId}'
 
 
 # user/deleteaccount
 def test_post_deleteaccount_fail():
     headers = {'Content-Type': 'application/json'}
-    data = {"authorizationToken": f'{pytest.token},{pytest.userId}'}
-    print('-------')
-    print(data)
-    print('-------')
+    data = {"authorizationToken": 'no_token'}
+
     r = requests.post(f'{URL}/deleteaccount', headers=headers, json=data)
     assert r.status_code == 401
 
     json_res = r.json()
-
     errorMessage=json_res["message"]
-    assert "Missing arguments" in errorMessage
+    assert "Missing Authentication Token" in errorMessage
 
 
 # loadpreviewsections
 def test_post_loadpreviewsections_fail():
     headers = {'Content-Type': 'application/json'}
-    data = {"token": pytest.token, "url": "some_url"}
+    data = {"authorizationToken": pytest.auth_token}
 
     r = requests.post(f'{URL}/loadpreviewsections', headers=headers, json=data)
     assert r.status_code == 200
@@ -143,21 +149,17 @@ def test_post_loadpreviewcomponents_fail():
 def test_post_deletesection_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"not_token ": 'na'}
-
     r = requests.post(f'{URL}/deletesection', headers=headers, json=data)
     assert r.status_code == 401
-
     json_res = r.json()
     errorMessage=json_res["message"]
     assert "Missing Authentication Token" in errorMessage
 
-# user/
 
 # user/save
 def test_post_save_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"token": pytest.token}
-
     r = requests.post(f'{URL}/user/save', headers=headers, json=data)
     assert r.status_code == 401
 
@@ -166,11 +168,8 @@ def test_post_save_fail():
 def test_updatepreviewstatus_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"token": pytest.token, "is_public": True, "userId": "some_user_id"}
-
     r = requests.post(f'{URL}/user/updatepreviewstatus', headers=headers, json=data)
-    
     json_res = r.json()
-
     assert r.status_code == 401
     assert "Unauthorized" in str(json_res)
 
@@ -179,10 +178,14 @@ def test_updatepreviewstatus_fail():
 def test_verify_fail():
     headers = {'Content-Type': 'application/json'}
     data = {"token": pytest.token, "id": "some_user_id", "verification": "some_verification"}
-
     r = requests.post(f'{URL}/user/verify', headers=headers, json=data)
-    
     json_res = r.json()
-
     assert "No user found" in json_res
-    
+
+# user/updatepassword 
+def test_updatepassword_fail():
+    headers = {'Content-Type': 'application/json'}
+    data = {"token": pytest.token}
+    r = requests.post(f'{URL}/user/verify', headers=headers, json=data)
+    json_res = r.json()
+    assert "Missing arguments" in json_res
