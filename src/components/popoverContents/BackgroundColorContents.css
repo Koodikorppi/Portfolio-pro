@@ -1,0 +1,21 @@
+
+.colorpicker{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.colorpicker .ButtonUnstyled-root{
+    padding: 0.5em 1em;
+    background-color: orange;
+    border: none;
+    width: 100%;
+    border-radius: 0.35em;
+    color: black;
+}
+.colorpicker .ButtonUnstyled-root:hover:not(.Mui-disabled):not(.delete_btn){
+    cursor: pointer;
+    background-color: yellow;
+}

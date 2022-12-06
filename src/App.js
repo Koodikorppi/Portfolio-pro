@@ -10,7 +10,7 @@ import UserPage from './pages/UserPage';
 import './styles/App.css'
 
 const App = () => {
-  const { token, userId, url, setUrl, login, logout, refreshToken } = useLoginHook()
+  const { token, userId, url, publish, setPublish, setUrl, login, logout, refreshToken } = useLoginHook()
   return (
     <div className="App">
       <AuthContext.Provider value={
@@ -18,6 +18,8 @@ const App = () => {
           isLoggedIn: !!token,
           token: token,
           url: url,
+          publish: publish,
+          setPublish: setPublish,
           setUrl: setUrl,
           login: login,
           logout: logout,
@@ -28,9 +30,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<AuthPage/>} />
           <Route path="/user" element={<UserPage />} />
-          <Route path="/preview" element={<PreviewPage />} />
-          <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
-          <Route path="/user/:id/verify/:hash" element={<VerificationPage />}/>
+          <Route path="/preview/:name" element={<PreviewPage />} />
+          <Route path="/user/:id/:verify/:hash" element={<VerificationPage />}/>
         </Routes>
       </AuthContext.Provider>
     </div>

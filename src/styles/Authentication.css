@@ -71,20 +71,6 @@ body{
     height: auto;
 }
 
-.authMessage{
-    display: flex;
-    border-radius: 1em;
-    border: solid 2px #222;
-    padding: 0.5em 2em;
-}
-
-.authMessage-alert{
-    display: flex;
-    border-radius: 1em;
-    border: solid 2px red;
-    padding: 0.5em 2em;
-    color: red
-}
 .login_wrapper{
     width: 100%;
     max-width: 400px;

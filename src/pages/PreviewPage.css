@@ -1,15 +1,14 @@
-.userpage{
+.previewpage{
     display: flex;
     width: 100%;
     height: 100%;
 
 }
 
-.usercolumn{
+.previewcolumn{
     display: flex;
     flex-direction: column;
     position: fixed;
-    left: 40px;
-    width: calc(100vw - 40px);
+    width: 100%;
     height: 100%;
 }

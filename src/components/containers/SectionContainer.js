@@ -9,16 +9,31 @@ import { saveData, deleteData } from "./mockupdata";
 
 const SectionContainer = () => {
     const context = useContext(SectionContext)
-    const [header, setHeader] = useState("")
-    const auth = useContext(AuthContext);
-    const {isLoading, sendRequest} = useHttpClient();
+    const auth = useContext(AuthContext)
+    const {isLoading, error, sendRequest} = useHttpClient();
+    const [edit, setEdit] = useState(false)
 
     const handleSave = async () => {
-        if(header !== "" || context.activeSection !== null){
+        if(context.sectionName !== ""){
             const dataJson = []
-            let currSection = context.activeSection !== null ? {name: header, id: context.activeSection.id} : {name: header, id: uuidv4()}
-            Object.keys(context.sectionData).forEach(e => {
-                dataJson.push({gridId: e, layout: context.layout, sectionId: currSection.id, sectionName: currSection.name, type: context.sectionData[e].type, value: context.sectionData[e].data })
+            let currSection = context.sectionId !== null ? context.sectionId : uuidv4()
+            let position = 0;
+            let navIndex = 0;
+            if(context.sectionId === null && context.navLinks.length > 0){
+              position = context.navLinks[context.navLinks.length - 1].position + 1
+            } else if (context.navLinks.length > 0){
+              const navIndex = context.navLinks.findIndex((d) => {
+                if(d.id === currSection){
+                  return true;
+                }
+              })
+              position = context.navLinks[navIndex].position
+            }
+            context.sectionData.forEach((e, row) => {
+                e.forEach((d, index) => {
+                  dataJson.push({posid: index, slotid: row, type: d.type, value: d.data !== undefined ? d.data : "" })
+                })
+
             })
                 try {
                     //saveData(dataJson)
@@ -26,6 +41,12 @@ const SectionContainer = () => {
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/save`,
                       'POST',
                       JSON.stringify({
+                        id: currSection,
+                        userId: auth.userId,
+                        name: context.sectionName,
+                        layout: context.layout,
+                        background: context.background,
+                        position: position,
                         data: dataJson
                       }),
                       {
@@ -33,19 +54,14 @@ const SectionContainer = () => {
                         'authorizationToken': `${auth.token},${auth.userId}`
                       }
                     );
-                    if(context.activeSection === null){
+                    if(context.sectionId === null){
                       context.setNavlinks(prev => {
-                        return [...prev, currSection]
+                        return [...prev, {name: context.sectionName, id: currSection, position: position}]
                     })
-                    context.setActiveSection(currSection)
+                    context.setSectionId(currSection)
                     } else {
-                      const index = context.navLinks.findIndex((d) => {
-                        if(d.id === context.activeSection.id){
-                          return true;
-                        }
-                      })
                       const templist = [...context.navLinks]
-                      templist[index].name = header;
+                      templist[navIndex].name = context.sectionName;
                       context.setNavlinks(templist);
                     }
                   } catch (err) {
@@ -57,36 +73,107 @@ const SectionContainer = () => {
         }
     }
 
-    const handleDel = () => {
-      deleteData(context.activeSection.id)
-      context.setNavlinks(prev => {return prev.filter(e => e.id !== context.activeSection.id)})
-      context.setText(null)
-      context.setFont(null)
-      context.setBackground(null)
-      context.setLayout(null)
-      context.setSectionData(null)
-      context.setActiveSection(null)
-
+    const handleDel = async () => {
+      try {
+        await sendRequest(
+          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/deletesection`,
+          "POST",
+          JSON.stringify({
+            userId: auth.userId,
+            sectionId: context.sectionId
+          }),
+          {
+            "Content-Type": "application/json",
+            authorizationToken: `${auth.token},${auth.userId}`,
+          }
+        );
+        context.setNavlinks(prev => {return prev.filter(e => e.id !== context.sectionId)})
+        context.setSectionName("Section header...")
+        context.setBackground("#018be7")
+        context.setLayout("gridLayout")
+        context.setSectionData([
+          [
+           {type: ""}
+          ]
+       ])
+        context.setSectionId(null)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     const newSection = () => {
-      context.setText(null)
-      context.setFont(null)
-      context.setBackground(null)
-      context.setLayout(null)
-      context.setSectionData(null)
-      context.setActiveSection(null)
+      context.setSectionName("Section header...")
+      context.setSectionId(null)
+      context.setBackground("#018be7")
+      context.setLayout("gridLayout")
+      context.setSectionData([
+        [
+         {type: ""}
+        ]
+     ])
+      context.setSectionId(null)
     }
 
-    return(<div className="section">
-        <div className="section-header"><input defaultValue={(context.activeSection !== null) ? context.activeSection.name : "" } type={"text"} onChange={(e) => setHeader(e.target.value)} placeholder="Section header..."/></div>
-        <div className="section-content">{context.layout === 'gridLayout' && <GridLayout data={context.sectionData} setter={context.setSectionData}/>}</div>
-        <div className="section-save">
-            {context.activeSection !== null &&<button onClick={() => handleDel()}>Delete</button>}
-            <button onClick={() => handleSave()}><img src="/svg/memcard.svg" alt="Save"></img>Save</button>
-            {context.activeSection !== null && <button onClick={() => newSection()}>Create new</button>}
-            </div>
-    </div>)
+    const addSlot = () => {
+      context.setSectionData(prev => {
+        return [...prev, [{type: ""}]]
+      })
+    }
+
+    const handleEnter = (e) => {
+      if(e.key == "Enter"){
+        setEdit(false)
+      }
+    }
+
+    return (
+      <div className="section" style={{backgroundColor: context.background}}>
+        <div className="topRow">
+        <div className="section-header">
+          {edit ? <input
+            defaultValue={
+              context.sectionName
+            }
+            type={"text"}
+            onChange={(e) => context.setSectionName(e.target.value)}
+            onBlur={() => setEdit(false)}
+            onKeyDown={handleEnter}
+            placeholder="Section header..."
+          /> : <div className="presentation">
+            <h1>{context.sectionName.toUpperCase()}</h1>
+            <button onClick={() => setEdit(true)}><img src="/svg/edit.svg" alt="edit"></img></button>
+            </div>}
+        </div>
+        <div className="section-buttons">
+        <div className="slotAdd">
+            <button onClick={() => addSlot()}>
+            <img src="/svg/plus_icon.svg" alt="Add"></img> add row
+            </button>
+        </div>
+        <div className="section-actions">
+          {context.activeSection !== null && (
+            <button onClick={() => handleDel()}>Delete</button>
+          )}
+          <button onClick={() => handleSave()}>
+            <img src="/svg/memcard.svg" alt="Save"></img>Save
+          </button>
+          {context.activeSection !== null && (
+            <button onClick={() => newSection()}>Create new</button>
+          )}
+        </div>
+        </div>
+        </div>
+        <div className="section-content">
+          {context.layout === "gridLayout" && (
+            <GridLayout
+              data={context.sectionData}
+              setter={context.setSectionData}
+            />
+          )}
+        </div>
+      </div>
+    );
 }
 
 export default SectionContainer

@@ -3,7 +3,6 @@ import { SectionContext } from "../../contexts/SectionContext";
 import './LayoutContents.css'
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
-import { baseLayoutData } from "../layouts/baseGrids";
 
 
 
@@ -12,9 +11,9 @@ const LayoutContents = ({close}) => {
     const [open, setOpen] = useState(false)
     const [current, setCurrent] = useState(context.layout)
 
-    const layouts = ['gridLayout',2,3,4,5]
-    const layout_names = ['Grid','Image gallery','Video gallery','Side-scroller','Form']
-    const svg_icons = ['grid_layout','photos_layout','videos_layout','slides_layout','form_layout']
+    const layouts = ['gridLayout',2]
+    const layout_names = ['Grid','Side-scroller']
+    const svg_icons = ['grid_layout', 'slides_layout']
 
     const handleSelect = (e) => {
         if(e !== context.layout){
@@ -32,7 +31,11 @@ const LayoutContents = ({close}) => {
         setOpen(false)
         close(null)
         context.setLayout(current)
-        context.setSectionData(baseLayoutData[current])
+        context.setSectionData([
+          [
+           {type: ""}
+          ]
+       ])
     }
     return(<div className="LayoutContents">
         {layouts.map((l, index) => {
