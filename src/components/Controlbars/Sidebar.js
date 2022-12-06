@@ -4,6 +4,7 @@ import './Sidebar.css'
 import LayoutContents from "../popoverContents/LayoutContents";
 import AccountContents from "../popoverContents/AccountContents";
 import SettingsContents from "../popoverContents/SettingsContents";
+import BackgroundColorContents from "../popoverContents/BackgroundColorContents";
 
 const Sidebar = () => {
     const [anchor, setAnchor] = useState(null);
@@ -58,7 +59,7 @@ const Sidebar = () => {
             className={"Layouts" === header ? "active" : ""}
           ></img>
         </button>
-        <button onClick={() => handleState("Backgrounds", <div></div>)}>
+        <button onClick={() => handleState("Backgrounds", <BackgroundColorContents/>)}>
           <img
             src="/svg/colors.svg"
             alt="Backgrounds"

@@ -164,5 +164,56 @@ const handleType = (type, data, row, index, setter) => {
   }
 };
 
+const handlePreviewType = (type, data, row, index, setter) => {
+  switch (type) {
+    case "empty":
+      return (
+        <div key={index} className="preview-container">
+        </div>
+      );
+    case "text":
+      return (
+        <div key={index} className="preview-container">
+          <TextEditComponent
+            index={index}
+            row={row}
+            setter={setter}
+            data={data}
+          />
+        </div>
+      );
+    case "video":
+      return (
+        <div key={index} className="preview-container">
+          <VideoEditComponent
+            index={index}
+            row={row}
+            setter={setter}
+            data={data}
+          />
+        </div>
+      );
+    case "image":
+      return (
+        <div key={index} className="preview-container">
+          <ImageEditComponent
+            index={index}
+            row={row}
+            setter={setter}
+            data={data}
+          />
+        </div>
+      );
+    case "button":
+      return (
+        <div key={index} className="preview-container">
+          <LinkComponent index={index} row={row} setter={setter} data={data} />
+        </div>
+      );
+    default:
+      return <></>;
+  }
+};
 
-export {handleType}
+
+export {handleType, handlePreviewType}

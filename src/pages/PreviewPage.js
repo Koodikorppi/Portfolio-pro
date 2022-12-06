@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import Sidebar from "../components/Controlbars/Sidebar";
-import SectionContainer from "../components/containers/SectionContainer";
+import PreviewSectionContainer from "../components/containers/PreviewSectionContainer";
 import Navbar from "../components/Controlbars/Navbar";
 import { SectionContext } from "../contexts/SectionContext";
 import './UserPage.css'
@@ -16,6 +16,7 @@ export const PreviewPage = () => {
   const [layout, setLayout] = useState(null)
   const navigate = useNavigate();
   const {isLoading, error, sendRequest} = useHttpClient();
+  const mode = "preview"
 
   useEffect(() => {
     (async() => {
@@ -41,7 +42,9 @@ export const PreviewPage = () => {
       ]
    ])
     } catch (error) {
-      console.log(error)
+      if(error.code === 405){
+
+      }
     }
   })()
   },[])
@@ -55,6 +58,7 @@ export const PreviewPage = () => {
           navLinks: navLinks,
           layout: layout,
           sectionData: sectionData,
+          mode: mode,
           setSectionId: setSectionId,
           setSectionName: setSectionName,
           setBackground: setBackground,
@@ -63,11 +67,10 @@ export const PreviewPage = () => {
           setSectionData: setSectionData,
         }
       }>
-      <div className="userpage">
-        <Sidebar />
-        <div className="column">
+      <div className="previewpage">
+        <div className="previewcolumn">
           <Navbar />
-          <SectionContainer />
+          <PreviewSectionContainer />
         </div>
       </div>
       </ SectionContext.Provider>

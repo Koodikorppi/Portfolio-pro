@@ -7,6 +7,7 @@ import './UserPage.css'
 import { useHttpClient } from "../hooks/useHttpClient";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
+import Context from "@mui/base/TabsUnstyled/TabsContext";
 
 export const UserPage = () => {
   const [sectionId, setSectionId] = useState(null)
@@ -15,6 +16,7 @@ export const UserPage = () => {
   const [background, setBackground] = useState(null)
   const [navLinks, setNavlinks] = useState([])
   const [layout, setLayout] = useState(null)
+  const mode = "edit"
   const auth = useContext(AuthContext)
   const navigate = useNavigate();
   const {isLoading, error, sendRequest} = useHttpClient();
@@ -37,9 +39,10 @@ export const UserPage = () => {
       const navs = response.sort((a, b) => {
         return a.sectionPosition - b.sectionPosition;
       });
-      console.log()
       setNavlinks(navs)
       setLayout("gridLayout")
+      setSectionName("Section header...")
+      setBackground("#018be7")
       setSectionData([
       [
        {type: ""}
@@ -63,6 +66,7 @@ export const UserPage = () => {
           navLinks: navLinks,
           layout: layout,
           sectionData: sectionData,
+          mode: mode,
           setSectionId: setSectionId,
           setSectionName: setSectionName,
           setBackground: setBackground,
@@ -73,7 +77,7 @@ export const UserPage = () => {
       }>
       <div className="userpage">
         <Sidebar />
-        <div className="column">
+        <div className="usercolumn">
           <Navbar />
           <SectionContainer />
         </div>

@@ -7,6 +7,7 @@ export const SectionContext = createContext({
     navLinks: [],
     layout: null,
     sectionData: null,
+    mode: null,
     setSectionId: () => {},
     setSectionName: () => {},
     setBackground: () => {},

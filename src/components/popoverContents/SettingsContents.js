@@ -184,7 +184,7 @@ const SettingsContents = () => {
               Update
             </ButtonUnstyled>
         </form>
-        {auth.url !== "" ? <p>Current url: {auth.url}</p> : <p>Portfolio needs name to be public</p>}
+        {auth.url !== "" ? <p>Your portfolio <a href={auth.url}>link</a></p> : <p>Portfolio needs name to be public</p>}
         {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
         </div>
       </div>

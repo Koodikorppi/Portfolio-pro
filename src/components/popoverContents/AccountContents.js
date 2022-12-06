@@ -119,8 +119,7 @@ const AccountContents = () => {
     return (
       <div className="accountContents">
         <ButtonUnstyled
-              type="submit"
-              data-cy="password_submit_btn"
+              data-cy="logout_btn"
               onClick={() => auth.logout()}
             >
               Logout

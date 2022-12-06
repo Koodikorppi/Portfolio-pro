@@ -46,7 +46,7 @@ div[id$="popover"] {
     border-left: thin solid #333;
     left: var(--toolbar-width);
     height: 100vh;
-    width: 200px;
+    width: 250px;
     position: absolute;
     box-shadow: "0 2px 8px 0 rgba(0,0,0,0.2)";
     padding: 1em;

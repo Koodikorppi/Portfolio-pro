@@ -10,7 +10,7 @@ const MessageBox = ({message, setter, alert}) => {
             clearTimeout()
         })
       }, [])
-
+    console.log(alert)
     const classname = alert ? "alert-message" : "message"
     return(<div className={classname}>
         <p>

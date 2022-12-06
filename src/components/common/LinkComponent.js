@@ -1,8 +1,9 @@
-import React,  {useState} from "react";
+import React,  {useContext, useState} from "react";
+import { SectionContext } from "../../contexts/SectionContext";
 import './LinkComponent.css'
 
 const LinkComponent = ({index, row, setter, data}) => {
-
+    const context = useContext(SectionContext)
     const [link, setLink] = useState("")
     const [label, setLabel] = useState("")
     const [message, setMessage] = useState("Only button will be shown in portfolio")
@@ -23,7 +24,7 @@ const LinkComponent = ({index, row, setter, data}) => {
 
 
     return(<div className="linkcomponent">
-        {(data === null || data === undefined) && <div className="linkbuilder">
+        {(data === null || data === undefined || context.mode !== "preview") && <div className="linkbuilder">
             <p>{message}</p>
             <input defaultValue={"...button label"} value={label} type={"text"} onChange={(e) => {setLabel(e.target.value)}} placeholder="Display text..."/>
             <input defaultValue={"...url link"} value={link} type={"text"} onChange={(e) => setLink(e.target.value)} placeholder="url..."/>

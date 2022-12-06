@@ -1,7 +1,7 @@
 :root{
     --toolbar-width: 40px;
 }
-.Navbar{
+.edit-navbar{
     display: flex;
     justify-content: flex-end;
     width: calc(100% - 40px);
@@ -11,5 +11,17 @@
     gap: 1em;
     padding-right: 1em;
     left: var(--toolbar-width);
+    color: white;
+}
+
+.preview-navbar{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: var(--toolbar-width);
+    background-color: rgb(71, 71, 71);
+    position: fixed;
+    gap: 1em;
+    padding-right: 1em;
     color: white;
 }

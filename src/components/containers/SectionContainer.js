@@ -11,6 +11,7 @@ const SectionContainer = () => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
     const {isLoading, error, sendRequest} = useHttpClient();
+    const [edit, setEdit] = useState(false)
 
     const handleSave = async () => {
         if(context.sectionName !== ""){
@@ -44,7 +45,7 @@ const SectionContainer = () => {
                         userId: auth.userId,
                         name: context.sectionName,
                         layout: context.layout,
-                        background: "",
+                        background: context.background,
                         position: position,
                         data: dataJson
                       }),
@@ -87,8 +88,8 @@ const SectionContainer = () => {
           }
         );
         context.setNavlinks(prev => {return prev.filter(e => e.id !== context.sectionId)})
-        context.setSectionName("")
-        context.setBackground(null)
+        context.setSectionName("Section header...")
+        context.setBackground("#018be7")
         context.setLayout("gridLayout")
         context.setSectionData([
           [
@@ -102,9 +103,9 @@ const SectionContainer = () => {
     }
 
     const newSection = () => {
-      context.setSectionName("")
+      context.setSectionName("Section header...")
       context.setSectionId(null)
-      context.setBackground(null)
+      context.setBackground("#018be7")
       context.setLayout("gridLayout")
       context.setSectionData([
         [
@@ -120,18 +121,29 @@ const SectionContainer = () => {
       })
     }
 
+    const handleEnter = (e) => {
+      if(e.key == "Enter"){
+        setEdit(false)
+      }
+    }
+
     return (
-      <div className="section">
+      <div className="section" style={{backgroundColor: context.background}}>
         <div className="topRow">
         <div className="section-header">
-          <input
+          {edit ? <input
             defaultValue={
               context.sectionName
             }
             type={"text"}
             onChange={(e) => context.setSectionName(e.target.value)}
+            onBlur={() => setEdit(false)}
+            onKeyDown={handleEnter}
             placeholder="Section header..."
-          />
+          /> : <div className="presentation">
+            <h1>{context.sectionName.toUpperCase()}</h1>
+            <button onClick={() => setEdit(true)}><img src="/svg/edit.svg" alt="edit"></img></button>
+            </div>}
         </div>
         <div className="section-buttons">
         <div className="slotAdd">

@@ -16,7 +16,7 @@ body{
     padding: 1em 1em;
 }
 
-.message-alert{
+.alert-message{
     display: flex;
     border-radius: 1em;
     border: solid 2px red;

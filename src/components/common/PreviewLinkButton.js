@@ -4,7 +4,8 @@ import './LinkButton.css'
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
 
-const LinkButton = ({data}) => {
+
+const PreviewLinkButton = ({data}) => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
     const {isLoading, error, sendRequest} = useHttpClient();
@@ -12,14 +13,14 @@ const LinkButton = ({data}) => {
     const handleLoad = async (id) => {
       try {
         const response = await sendRequest(
-          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/loadcomponents`,
+          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/loadpreviewcomponents`,
           "POST",
           JSON.stringify({
+            url: window.location.href,
             sectionId: id,
           }),
           {
             "Content-Type": "application/json",
-            'authorizationToken': `${auth.token},${auth.userId}`
           }
         );
         context.setSectionName(data.name);
@@ -32,11 +33,13 @@ const LinkButton = ({data}) => {
           if (tempdata[element.slotid] === undefined) {
             tempdata[element.slotid] = [];
           }
-          tempdata[element.slotid].push({
-            index: element.posid,
-            type: element.type,
-            data: element.value,
-          });
+          if(element.type !== "" && element.type !== "select"){
+            tempdata[element.slotid].push({
+                index: element.posid,
+                type: element.type,
+                data: element.value,
+              });
+          }
         });
 
         Object.keys(tempdata).forEach((d) => {
@@ -55,4 +58,4 @@ const LinkButton = ({data}) => {
     return(<button className="navlink-button" onClick={() => handleLoad(data.id)}>{data.name}</button>)
 }
 
-export default LinkButton
+export default PreviewLinkButton
