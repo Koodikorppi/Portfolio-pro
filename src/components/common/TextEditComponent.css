@@ -11,3 +11,26 @@
     resize: none;
     margin-top: 20%;
 }
+.quill{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.ql-toolbar.ql-snow .ql-formats{
+margin-right:5px !important;
+}
+.ql-toolbar{
+    max-width: 98%;
+}
+
+/* prevent user to create another h1 elem */
+.ql-header:first-child{
+    display: none !important;
+    
+}
+.ql-toolbar .ql-formats:nth-child(1){
+    display: flex;
+}
+.ql-editor{
+    min-width: 200px;
+}

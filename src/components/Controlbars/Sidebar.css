@@ -11,6 +11,9 @@
     position: fixed;
     left: 0;
 }
+#sidebar-popover{
+    overflow-y: auto;
+}
 .Sidebar button{
     display: block;
     max-width: var(--toolbar-width);
@@ -76,12 +79,17 @@ div[id$="popover"] {
 }
 .container .typeselect .buttons{
     display: grid;
+    grid-template-areas: 
+    "type_btn1 type_btn2"
+    "type_btn3 type_btn4";
+
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     gap: 1em;
+    width: 100%;
 }
+
 .typeselect p{
     width: 100%;
     text-align: center;
@@ -96,6 +104,23 @@ div[id$="popover"] {
     gap: 0.25em;
     background-color: transparent;
     border: none;
+    grid-area: type_btn;
+}
+.typeselect button:nth-child(1){
+    grid-area: type_btn1;
+}
+.typeselect button:nth-child(2){
+    grid-area: type_btn2;
+}
+.typeselect button:nth-child(3){
+    grid-area: type_btn3;
+}
+.typeselect button:nth-child(4){
+    grid-area: type_btn4;
+}
+.typeselect_empty{
+    width: 100%;
+    margin-top: 0.5em;
 }
 .typeselect button img{
     max-height: 50px;

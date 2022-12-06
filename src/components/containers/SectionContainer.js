@@ -148,18 +148,22 @@ const SectionContainer = () => {
         <div className="section-buttons">
         <div className="slotAdd">
             <button onClick={() => addSlot()}>
-            <img src="/svg/plus_icon.svg" alt="Add"></img> add row
+            <img src="/svg/addrow.svg" alt="Add"></img><span>Add row</span>
             </button>
         </div>
         <div className="section-actions">
           {context.activeSection !== null && (
-            <button onClick={() => handleDel()}>Delete</button>
+            <button onClick={() => handleDel()}>
+              <img src="/svg/whitetrash.svg" alt="Save"></img>
+              <span>Delete</span></button>
           )}
           <button onClick={() => handleSave()}>
-            <img src="/svg/memcard.svg" alt="Save"></img>Save
+            <img src="/svg/memcard.svg" alt="Save"></img><span>Save</span>
           </button>
           {context.activeSection !== null && (
-            <button onClick={() => newSection()}>Create new</button>
+            <button onClick={() => newSection()}>
+              <img src="/svg/addsection.svg" alt="Save"></img>
+              <span>Add Section</span></button>
           )}
         </div>
         </div>

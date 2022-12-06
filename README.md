@@ -1,11 +1,11 @@
 # Portfolio Pro
-Portfolio Pro is customizable online portfolio site builder for various professionals aiming to showcase their work.
+Portfolio Pro is customizable online portfolio site builder for various professionals to showcase their work.
 
 | Project  | Portfolio Pro web app|
 | ------------- |:-------------|
-| Tech stack | React, AWS |
-|Public url|will be updated|
-| External services | AWS (Amplify, EC2...) |
+| Tech stack | React, AWS, PostgreSQL |
+|Public url|https://main.dsbrm4nuc1jgz.amplifyapp.com/|
+| External services | AWS (Amplify, Lamda, PostgreSQL, EC2) |
 
 
 ## Install
@@ -19,8 +19,13 @@ npm install
 npm start
 ```
 
-## Test
+## Test Frontend
 ```
-npx cypress run  
 npx cypress open
 ```
+
+## Test Backend
+See branch: [Backend Tests](https://github.com/Koodikorppi/Portfolio-pro/tree/pytest-backend) 
+
+## Screenshots
+![Login page](/screenshots/login_page.png"Login page")
