@@ -28,11 +28,10 @@
     max-height: 100%;
     gap: 1em;
     font-size: 1.8em;
+    align-items: center;
 }
 
 .presentation h1{
-    display: flex;
-    text-align: center;
     align-items: center;
     margin: 0px;
     padding: 0px;
@@ -52,7 +51,10 @@
     justify-content: space-around;
 
 }
-
+.presentation button:hover img{
+    cursor: pointer;
+    filter: invert(100%) sepia(0%) saturate(7498%) hue-rotate(146deg) brightness(96%) contrast(102%);
+}
 .presentation img{
     height: 3.5em;
     width: 3.5em;
@@ -86,19 +88,22 @@
 .slotAdd button {
     display: flex;
     padding: 0.1em 0.1em;
-    background-color: #222;
+    background-color: #fff;
     width: 10em;
     text-align: center;
     align-items: center;
-    color: white;
-    height: 4.5em;
-    border-radius: 5px;
+    color: #222;
+    height: 5.5em;
     justify-content: space-around;
+    border: none;
+    border-radius: 0.25em;
+    padding-right: 0.5em;
 
 }
 
 .section-actions{
     display: flex;
+    gap: 0.5em;
 }
 
 .section-actions button{
@@ -112,8 +117,8 @@
     color: white;
     background-color: #222;
     border-radius: 50%;
-    width: 4.5em;
-    height: 4.5em;
+    width: 5.5em;
+    height: 5.5em;
 
 }
 .section-buttons button:hover{
@@ -164,7 +169,6 @@
 
 .preview-section-header h1{
     display: flex;
-    text-align: center;
     align-items: center;
     margin: 0px;
     padding: 0px;
