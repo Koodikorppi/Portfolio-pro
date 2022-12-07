@@ -11,7 +11,7 @@ const LayoutContents = ({close}) => {
     const [open, setOpen] = useState(false)
     const [current, setCurrent] = useState(context.layout)
 
-    const layouts = ['gridLayout',2]
+    const layouts = ['gridLayout', 'sliderLayout']
     const layout_names = ['Grid','Side-scroller']
     const svg_icons = ['grid_layout', 'slides_layout']
 

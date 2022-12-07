@@ -24,7 +24,7 @@ const LinkComponent = ({index, row, setter, data}) => {
 
 
     return(<div className="linkcomponent">
-        {(data === null || data === undefined || context.mode !== "preview") && <div className="linkbuilder">
+        {((data === null || data === undefined) && context.mode !== "preview") && <div className="linkbuilder">
             <p>{message}</p>
             <input defaultValue={"...button label"} value={label} type={"text"} onChange={(e) => {setLabel(e.target.value)}} placeholder="Display text..."/>
             <input defaultValue={"...url link"} value={link} type={"text"} onChange={(e) => setLink(e.target.value)} placeholder="url..."/>

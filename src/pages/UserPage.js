@@ -7,7 +7,7 @@ import './UserPage.css'
 import { useHttpClient } from "../hooks/useHttpClient";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
-import Context from "@mui/base/TabsUnstyled/TabsContext";
+
 
 export const UserPage = () => {
   const [sectionId, setSectionId] = useState(null)

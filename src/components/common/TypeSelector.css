@@ -1,0 +1,64 @@
+.container div{
+    display: flex;
+    margin: 0 auto;
+}
+
+.typeselect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.typeselect .buttons{
+    display: grid;
+    grid-template-areas:
+    "type_btn1 type_btn2"
+    "type_btn3 type_btn4";
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    gap: 1em;
+    width: 100%;
+}
+
+.typeselect p{
+    width: 100%;
+    text-align: center;
+    height: 1em;
+    margin-bottom: 2em;
+}
+.typeselect button{
+    width: 75px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    background-color: transparent;
+    border: none;
+    grid-area: type_btn;
+}
+.typeselect button:nth-child(1){
+    grid-area: type_btn1;
+}
+.typeselect button:nth-child(2){
+    grid-area: type_btn2;
+}
+.typeselect button:nth-child(3){
+    grid-area: type_btn3;
+}
+.typeselect button:nth-child(4){
+    grid-area: type_btn4;
+}
+.typeselect_empty{
+    width: 100%;
+    margin-top: 0.5em;
+}
+.typeselect button img{
+    max-height: 50px;
+    filter: invert(80%);
+}
+.typeselect button:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}

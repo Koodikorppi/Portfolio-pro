@@ -4,7 +4,6 @@ import TextEditComponent from "../components/common/TextEditComponent";
 import TypeSelector from "../components/common/TypeSelector";
 import VideoEditComponent from "../components/common/VideoEditComponent";
 import LinkComponent from "../components/common/LinkComponent";
-import '../components/layouts/Layout.css'
 
 
 const handleDelete = (index, row, setter) => {
@@ -26,11 +25,11 @@ const selectRepick = (index, row, setter) => {
         return newArr})
 }
 
-const handleType = (type, data, row, index, setter) => {
+const handleType = (type, data, row, index, setter, layout) => {
   switch (type) {
     case "":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           {<button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -42,7 +41,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "empty":
       return (
-        <div key={index} className="emptyContainer">
+        <div key={index} className={layout + "emptyContainer"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -62,7 +61,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "select":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -74,7 +73,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "text":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -97,7 +96,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "video":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -120,7 +119,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "image":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -143,7 +142,7 @@ const handleType = (type, data, row, index, setter) => {
       );
     case "button":
       return (
-        <div key={index} className="container">
+        <div key={index} className={layout + "-container"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -164,16 +163,16 @@ const handleType = (type, data, row, index, setter) => {
   }
 };
 
-const handlePreviewType = (type, data, row, index, setter) => {
+const handlePreviewType = (type, data, row, index, setter, layout) => {
   switch (type) {
     case "empty":
       return (
-        <div key={index} className="preview-container">
+        <div key={index} className={layout + "-preview-container"}>
         </div>
       );
     case "text":
       return (
-        <div key={index} className="preview-container">
+        <div key={index} className={layout + "-preview-container"}>
           <TextEditComponent
             index={index}
             row={row}
@@ -184,7 +183,7 @@ const handlePreviewType = (type, data, row, index, setter) => {
       );
     case "video":
       return (
-        <div key={index} className="preview-container">
+        <div key={index} className={layout + "-preview-container"}>
           <VideoEditComponent
             index={index}
             row={row}
@@ -195,7 +194,7 @@ const handlePreviewType = (type, data, row, index, setter) => {
       );
     case "image":
       return (
-        <div key={index} className="preview-container">
+        <div key={index} className={layout + "-preview-container"}>
           <ImageEditComponent
             index={index}
             row={row}
@@ -206,7 +205,7 @@ const handlePreviewType = (type, data, row, index, setter) => {
       );
     case "button":
       return (
-        <div key={index} className="preview-container">
+        <div key={index} className={layout + "-preview-container"}>
           <LinkComponent index={index} row={row} setter={setter} data={data} />
         </div>
       );

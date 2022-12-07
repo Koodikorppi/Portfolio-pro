@@ -1,17 +1,20 @@
-import React from "react";
+import React, {useContext} from "react";
+import { SectionContext } from "../../contexts/SectionContext";
+import "./EmptyComponent.css"
 
 const EmptyComponent = ({index, row, setter}) => {
-
+    const context = useContext(SectionContext)
     const handleClick = () => {
         setter((prev) => {
-             console.log(prev)
              const newArr = [...prev]
              newArr[row][index] = {type: 'select'}
-             newArr[row][index + 1] = {type: ""}
+             if(context.layout !== "SliderLayout" && index < 1){
+                newArr[row][index + 1] = {type: ""}
+             }
              return newArr})
     }
 
-    return(<div>
+    return(<div className="plus-box">
         <button className="plus_icon" onClick={() => handleClick()}>{<img src={`/svg/plus_icon.svg`} alt="" ></img>}</button>
     </div>)
 
