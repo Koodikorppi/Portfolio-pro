@@ -1,13 +1,15 @@
-import './GridLayout.css'
+import React from 'react';
+import './SliderLayout.css'
 import { handleType, handlePreviewType } from "../../utilities/layoutUtils";
 import { useContext } from 'react';
 import { SectionContext } from '../../contexts/SectionContext';
 
-const GridLayout = ({data, setter}) => {
+const SliderLayout = ({data, setter}) => {
     const context = useContext(SectionContext)
-    return(<div className="gridlayout">
+    return(<div className="sliderlayout">
+        <div className='slider-box'>
         {data.map((r, index1) => {
-            return(<div className="gridrow" key={"index"+index1}>
+            return(<div className="slide" key={"index"+index1}>
                 {r.map((d, index2) => {
                     if(context.mode === "edit"){
                         return(handleType(d.type, d.data, index1, index2, setter, context.layout))
@@ -18,9 +20,12 @@ const GridLayout = ({data, setter}) => {
                 })}
             </div>)
         })}
+
+        </div>
+
     </div>)
 
 }
 
 
-export default GridLayout
+export default SliderLayout

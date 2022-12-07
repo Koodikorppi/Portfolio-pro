@@ -17,9 +17,9 @@ const VideoEditComponent = ({index, row, setter, data}) => {
 
 
     return(<div className="videocomponent">
-        {(data === undefined || data === null || context.mode !== "preview") &&
+        {((data === null || data === undefined) && context.mode !== "preview") &&
         <div>
-         <input  id="videoSelect" onInput={(e) => videoSettings( URL.createObjectURL(e.target.files[0]))} type="file"/></div>}
+         <input  id={`videoSelect-${row}-${index}`} onInput={(e) => videoSettings( URL.createObjectURL(e.target.files[0]))} type="file"/></div>}
         {(data !== undefined && data !== null) && <video className="videoStyle" src={data} controls></video>}
     </div>)
 

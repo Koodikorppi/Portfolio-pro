@@ -1,7 +1,8 @@
-import React,  {useState} from "react";
+import React, {useState, useContext} from "react";
 import './TextEditComponent.css'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { SectionContext } from "../../contexts/SectionContext";
 
 const modules = {
     toolbar: [
@@ -25,18 +26,20 @@ const modules = {
 
 const TextEditComponent = ({index, row, setter, data}) => {
 
-    const [text, setText] = useState("")
-    console.log(text)
-    const outFocus = () => {
+    const context = useContext(SectionContext)
+    const updateText = (e) => {
         setter((prev) => {
             const newArr = [...prev]
-            newArr[row][index] = {...newArr[row][index], data: text}
+            newArr[row][index] = {...newArr[row][index], data: e}
             return newArr})
     }
     console.log(data)
     return(<div className="textcomponent">
-         <ReactQuill theme="snow" modules={modules} defaultValue={data} value={text} onChange={setText} onBlur={() => outFocus()}></ReactQuill>
-        
+        {(data === null || data === undefined || context.mode !== "preview") &&
+        <ReactQuill theme="snow" modules={modules} value={data} onChange={(e) => updateText(e)}></ReactQuill>}
+        {(data !== undefined && data !== null && context.mode === "preview") && <div dangerouslySetInnerHTML={{__html: data}}></div>}
+
+
     </div>)
 
 }

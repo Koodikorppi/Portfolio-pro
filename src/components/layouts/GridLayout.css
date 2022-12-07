@@ -1,0 +1,122 @@
+.gridlayout{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    padding: 4em 1em 0em 1em;
+    overflow-y: auto;
+
+}
+
+.gridrow{
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 1em;
+}
+
+.gridLayout-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 450px;
+    background-color: white;
+    border: solid black 2px;
+    margin-bottom: 1em;
+    position: relative;
+}
+.gridLayout-container div{
+    display: flex;
+    margin: 0 auto;
+}
+
+.gridLayout-preview-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 450px;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.gridLayout-emptyContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    height: 450px;
+    background-color: transparent;
+    border: solid black 2px;
+    margin-bottom: 1em;
+    position: relative;
+}
+.empty-contents{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.trash_icon{
+    position: absolute;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    border: none;
+}
+.trash_icon:hover img{
+    filter: brightness(2);
+    cursor: pointer;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(333deg) brightness(97%) contrast(103%);}
+.trash_icon img{
+    max-width: 100%;
+}
+
+.re-pick_icon{
+    position: absolute;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    left: 35px;
+    border: none;
+}
+
+.re-pick_icon:hover img{
+    filter: brightness(2);
+    cursor: pointer;
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(333deg) brightness(97%) contrast(103%);
+}
+
+.re-pick_icon img{
+    max-width: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px back;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: orange;
+  }

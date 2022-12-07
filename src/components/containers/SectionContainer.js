@@ -6,6 +6,7 @@ import './SectionContainer.css'
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { v4 as uuidv4 } from 'uuid';
 import { saveData, deleteData } from "./mockupdata";
+import SliderLayout from "../layouts/SliderLayout";
 
 const SectionContainer = () => {
     const context = useContext(SectionContext)
@@ -148,7 +149,7 @@ const SectionContainer = () => {
         <div className="section-buttons">
         <div className="slotAdd">
             <button onClick={() => addSlot()}>
-            <img src="/svg/addrow.svg" alt="Add"></img><span>Add row</span>
+            <img src="/svg/addrow.svg" className={context.layout+"Add"} alt="Add"></img><span>Add {context.layout === "gridLayout" ? "row" : "slide"}</span>
             </button>
         </div>
         <div className="section-actions">
@@ -175,6 +176,10 @@ const SectionContainer = () => {
               setter={context.setSectionData}
             />
           )}
+          {context.layout === "sliderLayout" &&
+          <SliderLayout
+          data={context.sectionData}
+          setter={context.setSectionData}/>}
         </div>
       </div>
     );
