@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import Authenticate from "../components/Authentication/Authenticate";
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext';
@@ -7,7 +7,13 @@ export const AuthPage = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
 
-  if(!auth.isLoggedIn){
+  useEffect(() => {
+    if(auth.isLoggedIn){
+      navigate('/user')
+    }
+  }, [auth.isLoggedIn])
+
+
     return (
       <><div className="hero">
           <div>
@@ -18,9 +24,6 @@ export const AuthPage = () => {
       <Authenticate/>
       </>
       )
-    } else {
-      navigate('/user')
-    }
 }
 
 export default AuthPage;

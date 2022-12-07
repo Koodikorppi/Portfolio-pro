@@ -15,7 +15,7 @@ const modules = {
         { indent: '-1' },
         { indent: '+1' },
       ],
-      ['link', 'image', 'video'],
+      ['link'],
       ['clean'],
     ],
     clipboard: {

@@ -5,7 +5,6 @@ import GridLayout from "../layouts/GridLayout";
 import './SectionContainer.css'
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { v4 as uuidv4 } from 'uuid';
-import { saveData, deleteData } from "./mockupdata";
 import SliderLayout from "../layouts/SliderLayout";
 
 const SectionContainer = () => {
@@ -13,7 +12,7 @@ const SectionContainer = () => {
     const auth = useContext(AuthContext)
     const {isLoading, error, sendRequest} = useHttpClient();
     const [edit, setEdit] = useState(false)
-
+    console.log(context.navLinks)
     const handleSave = async () => {
         if(context.sectionName !== ""){
             const dataJson = []
@@ -23,10 +22,8 @@ const SectionContainer = () => {
             if(context.sectionId === null && context.navLinks.length > 0){
               position = context.navLinks[context.navLinks.length - 1].position + 1
             } else if (context.navLinks.length > 0){
-              const navIndex = context.navLinks.findIndex((d) => {
-                if(d.id === currSection){
-                  return true;
-                }
+              navIndex = context.navLinks.findIndex((d) => {
+                return d.id === currSection
               })
               position = context.navLinks[navIndex].position
             }
@@ -37,7 +34,6 @@ const SectionContainer = () => {
 
             })
                 try {
-                    //saveData(dataJson)
                     await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/save`,
                       'POST',

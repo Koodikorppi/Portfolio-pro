@@ -32,7 +32,7 @@ export const PreviewPage = () => {
         }
       );
       const navs = response.sort((a, b) => {
-        return a.sectionPosition - b.sectionPosition;
+        return a.position - b.position;
       });
       setNavlinks(navs)
       setLayout("gridLayout")
