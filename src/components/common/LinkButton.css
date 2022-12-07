@@ -1,11 +1,11 @@
 .navlink-button{
     background-color: transparent;
     font-size: 20px;
-    color: white;
+    color: #222;
     border: none;
 }
 
 .navlink-button:hover{
     cursor: pointer;
-    color: orange;
+    color: #888;
 }

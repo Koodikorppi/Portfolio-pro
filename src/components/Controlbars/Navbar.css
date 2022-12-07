@@ -6,12 +6,12 @@
     justify-content: flex-end;
     width: calc(100% - 40px);
     height: var(--toolbar-width);
-    background-color: rgb(71, 71, 71);
+    background-color: white;
     position: fixed;
     gap: 1em;
     padding-right: 1em;
     left: var(--toolbar-width);
-    color: white;
+    color: #222;
 }
 
 .preview-navbar{
@@ -19,9 +19,9 @@
     justify-content: flex-end;
     width: 100%;
     height: var(--toolbar-width);
-    background-color: rgb(71, 71, 71);
     position: fixed;
     gap: 1em;
     padding-right: 1em;
-    color: white;
+    color: "222";
+    background-color: white;
 }
