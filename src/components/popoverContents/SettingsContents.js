@@ -108,7 +108,6 @@ const SettingsContents = () => {
 
     const handlePublicChange = async () => {
       try {
-        console.log(auth.userId)
         await sendRequest(
                     `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/updatepreviewstatus`,
                     'POST',
@@ -131,7 +130,7 @@ const SettingsContents = () => {
 
     const handleUrlUpdate = async (e) => {
         e.preventDefault()
-        const finalUrl = `${window.location.href.replace("user","") + "preview/" + formState.inputs.url.value}`
+        const finalUrl = `${window.location.href.replace("user","") + "preview/" + formState.inputs.url.value}/`
         try {
           await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/updatepreviewstatus`,
