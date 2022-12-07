@@ -4,8 +4,9 @@
     height: 85%;
     align-items: center;
     flex-direction: column;
-
-
+    background-color: white;
+    padding: 1em;
+    box-sizing: border-box;
 }
 
 .slide{
@@ -20,7 +21,6 @@
     width: 99%;
     height: 95%;
     overflow-x: auto;
-
 }
 
 .sliderLayout-container{

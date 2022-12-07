@@ -31,3 +31,17 @@
 .addressDiv .Mui-disabled{
     background-color: #999;
 }
+.conentsContainer a, .conentsContainera:visited{
+    color: orange;
+    position: relative;
+}
+.conentsContainer a:hover{
+    color: orangered;
+}
+.new_tab_icon{
+    display: inline-block;
+    position: absolute;
+    right: -1.5em;
+    top: 0.25em;
+    max-width: 1em;
+}
