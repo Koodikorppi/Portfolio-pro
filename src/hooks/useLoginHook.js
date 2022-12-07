@@ -1,7 +1,7 @@
 import {useState, useCallback, useEffect} from 'react'
 
 let logoutTimer;
-
+let refreshInterval;
 export const useLoginHook = () => {
   const [token, setToken] = useState(false);
   const [url, setUrl] = useState("")
@@ -26,12 +26,18 @@ export const useLoginHook = () => {
     localStorage.removeItem('userData');
   }, [])
 
-  const refreshToken = useCallback(() => {
-    if (token) {
-    const tokenExpiration = new Date(new Date().getTime() + 1000 * 60 * 60);
-    setTokenExpirationDate(tokenExpiration);
+  useEffect(() => {
+    refreshInterval = window.setInterval( () => {
+      if (token) {
+        const tokenExpiration = new Date(new Date().getTime() + 1000 * 60 * 60);
+        const storedData = JSON.parse(localStorage.getItem('userData'));
+        login(storedData.userId, storedData.token, storedData.url, storedData.publish, tokenExpiration);
+        }
+    }, 1800000);
+    return () => {
+      clearInterval(refreshInterval)
     }
-  }, [])
+  }, [login])
 
   useEffect(() => {
     if (token && tokenExpirationDate) {
@@ -51,5 +57,5 @@ export const useLoginHook = () => {
     }
   }, [login]);
 
-  return {token, userId, url, publish, setPublish, setUrl, login, logout, refreshToken}
+  return {token, userId, url, publish, setPublish, setUrl, login, logout}
 }

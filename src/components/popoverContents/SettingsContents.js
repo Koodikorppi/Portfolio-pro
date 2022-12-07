@@ -95,8 +95,6 @@ const Root = styled('span')(
     `,
   );
 
-const baseUrl = "http://localhost:3000/preview/"
-
 const SettingsContents = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const auth = useContext(AuthContext)
@@ -133,7 +131,7 @@ const SettingsContents = () => {
 
     const handleUrlUpdate = async (e) => {
         e.preventDefault()
-        const finalUrl = `${baseUrl + formState.inputs.url.value}`
+        const finalUrl = `${window.location.href.replace("user","") + "preview/" + formState.inputs.url.value}`
         try {
           await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/updatepreviewstatus`,
@@ -172,7 +170,7 @@ const SettingsContents = () => {
             id="url"
             type="text"
             label="Portfolio name (max 50 characters)"
-            validators={[VALIDATOR_MAXLENGTH(50), VALIDATOR_URL(baseUrl)]}
+            validators={[VALIDATOR_MAXLENGTH(50), VALIDATOR_URL(window.location.href.replace("user","") + "preview/")]}
             errorText="name contains invalid characters or is too long (max 50 characters)"
             onInput={inputHandler}
           />
