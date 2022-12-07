@@ -4,6 +4,7 @@ import { useHttpClient } from "../hooks/useHttpClient";
 import { Link } from "react-router-dom";
 import { Container, Header } from "semantic-ui-react";
 import '../styles/VerificationPage.css';
+import { LoadingNotif } from "../components/common/LoadingNotif";
 
 export const VerificationPage = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
@@ -67,6 +68,7 @@ export const VerificationPage = () => {
       <Header as={'h2'}>Verification success!</Header>
       {message()}
       </Container>}
+      <LoadingNotif state={isLoading}/>
     </div>)
 }
 

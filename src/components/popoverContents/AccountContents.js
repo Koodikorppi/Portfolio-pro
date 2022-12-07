@@ -9,6 +9,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 import { MessageBox } from "../common/MessageBox";
 import { Message } from "semantic-ui-react";
+import { LoadingNotif } from "../common/LoadingNotif";
 
 
 
@@ -224,6 +225,7 @@ const AccountContents = () => {
           {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
         </div>
       </ModalUnstyled>
+      <LoadingNotif state={isLoading}/>
       </div>
     );
 }

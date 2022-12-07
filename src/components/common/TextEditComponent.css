@@ -27,7 +27,7 @@ margin-right:5px !important;
 /* prevent user to create another h1 elem */
 .ql-header:first-child{
     display: none !important;
-    
+
 }
 .ql-toolbar .ql-formats:nth-child(1){
     display: flex;

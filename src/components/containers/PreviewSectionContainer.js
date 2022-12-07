@@ -5,6 +5,7 @@ import './SectionContainer.css'
 import SliderLayout from "../layouts/SliderLayout";
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
+import { LoadingNotif } from "../common/LoadingNotif";
 
 
 const PreviewSectionContainer = () => {
@@ -15,14 +16,14 @@ const PreviewSectionContainer = () => {
     const getFirst = async (id, name) => {
       try {
         const response = await sendRequest(
-          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/loadcomponents`,
+          `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/loadpreviewcomponents`,
           "POST",
           JSON.stringify({
+            url: window.location.href,
             sectionId: id,
           }),
           {
             "Content-Type": "application/json",
-            'authorizationToken': `${auth.token},${auth.userId}`
           }
         );
         context.setSectionName(name);
@@ -79,6 +80,7 @@ const PreviewSectionContainer = () => {
           data={context.sectionData}
           setter={context.setSectionData}/>}
         </div>
+        <LoadingNotif state={isLoading}/>
       </div> : <></>
     );
 }

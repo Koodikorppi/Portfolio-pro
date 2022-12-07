@@ -4,6 +4,7 @@ import './ImageEditComponent.css'
 import axios from 'axios';
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
+import { LoadingNotif } from "./LoadingNotif";
 
 const ImageEditComponent = ({index, row, setter, data}) => {
     const {isLoading, error, sendRequest} = useHttpClient();
@@ -54,6 +55,7 @@ const ImageEditComponent = ({index, row, setter, data}) => {
             <input id={`imageSelec-${row}-${index}`} onInput={(e) => imageSettings(e.target.files[0])} type="file"></input>
         </div>}
         {(data !== undefined && data !== null) && <img className="imageStyle" src={data}  width={"100%"} height={"100%"} alt={data} />}
+        <LoadingNotif state={isLoading}/>
     </div>)
 
 }

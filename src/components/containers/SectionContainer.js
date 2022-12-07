@@ -6,6 +6,7 @@ import './SectionContainer.css'
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { v4 as uuidv4 } from 'uuid';
 import SliderLayout from "../layouts/SliderLayout";
+import { LoadingNotif } from "../common/LoadingNotif";
 
 const SectionContainer = () => {
     const context = useContext(SectionContext)
@@ -177,6 +178,7 @@ const SectionContainer = () => {
           data={context.sectionData}
           setter={context.setSectionData}/>}
         </div>
+        <LoadingNotif state={isLoading}/>
       </div>
     );
 }

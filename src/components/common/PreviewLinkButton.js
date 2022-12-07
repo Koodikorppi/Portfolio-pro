@@ -3,6 +3,7 @@ import { SectionContext } from "../../contexts/SectionContext";
 import './LinkButton.css'
 import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
+import { LoadingNotif } from "./LoadingNotif";
 
 
 const PreviewLinkButton = ({data}) => {
@@ -55,7 +56,7 @@ const PreviewLinkButton = ({data}) => {
     };
 
 
-    return(<button className="navlink-button" onClick={() => handleLoad(data.id)}>{data.name}</button>)
+    return(<><LoadingNotif state={isLoading}/><button className="navlink-button" onClick={() => handleLoad(data.id)}>{data.name}</button></>)
 }
 
 export default PreviewLinkButton

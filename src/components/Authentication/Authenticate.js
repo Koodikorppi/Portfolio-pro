@@ -8,6 +8,7 @@ import {useHttpClient} from '../../hooks/useHttpClient';
 import { useForm } from '../../hooks/useForm';
 import { useNavigate } from 'react-router';
 import { MessageBox } from '../common/MessageBox';
+import { LoadingNotif } from '../common/LoadingNotif';
 
 
 const AuthMode = {
@@ -141,6 +142,7 @@ const Authenticate = () => {
             {mode}
         </div>
         {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
+        <LoadingNotif state={isLoading}/>
         </div>)
 }
 export default Authenticate;

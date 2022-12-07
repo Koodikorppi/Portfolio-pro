@@ -33,7 +33,7 @@ export const useLoginHook = () => {
         const storedData = JSON.parse(localStorage.getItem('userData'));
         login(storedData.userId, storedData.token, storedData.url, storedData.publish, tokenExpiration);
         }
-    }, 1800000);
+    }, 900000);
     return () => {
       clearInterval(refreshInterval)
     }

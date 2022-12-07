@@ -41,7 +41,7 @@ const handleType = (type, data, row, index, setter, layout) => {
       );
     case "empty":
       return (
-        <div key={index} className={layout + "emptyContainer"}>
+        <div key={index} className={layout + "-emptyContainer"}>
           <button
             onClick={() => handleDelete(index, row, setter)}
             className="trash_icon"
@@ -54,7 +54,7 @@ const handleType = (type, data, row, index, setter, layout) => {
           >
             <img src="/svg/repick.svg" alt="re-pick"></img>
           </button>
-          <div className="empty-contents">
+          <div className={layout +"-empty-contents"}>
             <p>This area will be empty in portfolio</p>
           </div>
         </div>

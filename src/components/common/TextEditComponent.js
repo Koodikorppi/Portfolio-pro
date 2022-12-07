@@ -8,21 +8,21 @@ const modules = {
     toolbar: [
       [{ header: '1' }, { header: '2' }, { font: [] }],
       [{ size: [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      ['bold', 'italic'],
       [
         { list: 'ordered' },
         { list: 'bullet' },
         { indent: '-1' },
         { indent: '+1' },
       ],
-      ['link'],
-      ['clean'],
     ],
     clipboard: {
       // toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
     },
   }
+
+
 
 const TextEditComponent = ({index, row, setter, data}) => {
 
@@ -33,10 +33,9 @@ const TextEditComponent = ({index, row, setter, data}) => {
             newArr[row][index] = {...newArr[row][index], data: e}
             return newArr})
     }
-    console.log(data)
     return(<div className="textcomponent">
         {(data === null || data === undefined || context.mode !== "preview") &&
-        <ReactQuill theme="snow" modules={modules} value={data} onChange={(e) => updateText(e)}></ReactQuill>}
+        <ReactQuill theme="snow" defaultValue={<pre class="ql-syntax" spellcheck="false"></pre>} modules={modules} value={data} onChange={(e) => updateText(e)}></ReactQuill>}
         {(data !== undefined && data !== null && context.mode === "preview") && <div dangerouslySetInnerHTML={{__html: data}}></div>}
 
 

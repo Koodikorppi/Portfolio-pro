@@ -6,6 +6,7 @@ import { SectionContext } from "../contexts/SectionContext";
 import './UserPage.css'
 import { useHttpClient } from "../hooks/useHttpClient";
 import { useNavigate } from "react-router";
+import { LoadingNotif } from "../components/common/LoadingNotif";
 
 export const PreviewPage = () => {
   const [sectionId, setSectionId] = useState(null)
@@ -72,6 +73,7 @@ export const PreviewPage = () => {
           <Navbar />
           <PreviewSectionContainer />
         </div>
+        <LoadingNotif state={isLoading}/>
       </div>
       </ SectionContext.Provider>
     );

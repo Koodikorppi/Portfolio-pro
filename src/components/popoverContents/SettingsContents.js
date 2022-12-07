@@ -9,6 +9,7 @@ import { styled } from '@mui/system';
 import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
 import { AuthContext } from "../../contexts/AuthContext";
 import { MessageBox } from "../common/MessageBox";
+import { LoadingNotif } from "../common/LoadingNotif";
 
 const orange = {
     500: '#ffa500'
@@ -186,6 +187,7 @@ const SettingsContents = () => {
           </a></p> : <p>Portfolio needs name to be public</p>}
         {message !== "" && <MessageBox message={message} setter={setMessage} alert={error}/>}
         </div>
+        <LoadingNotif state={isLoading}/>
       </div>
     );
 }

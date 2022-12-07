@@ -4,6 +4,7 @@ import './VideoEditComponent.css'
 import { AuthContext } from "../../contexts/AuthContext";
 import { useHttpClient } from "../../hooks/useHttpClient";
 import axios from "axios";
+import { LoadingNotif } from "./LoadingNotif";
 
 const VideoEditComponent = ({index, row, setter, data}) => {
     const {isLoading, error, sendRequest} = useHttpClient();
@@ -53,6 +54,7 @@ const VideoEditComponent = ({index, row, setter, data}) => {
         <div>
          <input  id={`videoSelect-${row}-${index}`} onInput={(e) => videoSettings(e.target.files[0])} type="file"/></div>}
         {(data !== undefined && data !== null) && <video className="videoStyle" src={data} controls></video>}
+        <LoadingNotif state={isLoading}/>
     </div>)
 
 }

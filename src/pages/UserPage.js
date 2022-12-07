@@ -7,6 +7,7 @@ import './UserPage.css'
 import { useHttpClient } from "../hooks/useHttpClient";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
+import { LoadingNotif } from "../components/common/LoadingNotif";
 
 
 export const UserPage = () => {
@@ -81,6 +82,7 @@ export const UserPage = () => {
           <Navbar />
           <SectionContainer />
         </div>
+        <LoadingNotif state={isLoading}/>
       </div>
       </ SectionContext.Provider>
     );
