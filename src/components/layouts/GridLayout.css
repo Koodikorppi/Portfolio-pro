@@ -28,6 +28,10 @@
     margin-bottom: 1em;
     position: relative;
 }
+.gridLayout-container .typeselect{
+    display: flex;
+    width: auto;
+}
 .gridLayout-container div{
     margin: 0 auto;
     width: 100%;
