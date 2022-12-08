@@ -9,19 +9,22 @@
     font-weight: normal;
     color: #999;
 }
-.accountContents .ButtonUnstyled-root{
+.accountContents .MuiButton-root{
     padding: 0.5em 1em;
     background-color: orange;
     border: none;
     border-radius: 0.35em;
     color: black;
 }
-.accountContents .ButtonUnstyled-root:hover:not(.Mui-disabled):not(.delete_btn){
+.accountContents .MuiButton-root:hover:not(.Mui-disabled):not(.delete_btn){
     cursor: pointer;
     background-color: yellow;
 }
 .accountContents .Mui-disabled{
     background-color: #999;
+    border: none !important;
+    border-radius: 0.5em;
+
 }
 .accountContents .delete_btn{
     background-color: crimson;
