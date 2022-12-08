@@ -50,8 +50,6 @@
     height: 4em;
     border: none;
     justify-content: space-around;
-
-
 }
 .presentation button:hover img{
     cursor: pointer;
