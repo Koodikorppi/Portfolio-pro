@@ -13,7 +13,10 @@ import { LoadingNotif } from "../common/LoadingNotif";
 
 
 
-// this component handles user settings like changing username, email or password. User can also delete account and decide if current portfolio has public viewing on.
+// this component handles user settings like email or password. User can also delete account.
+// password will require user to give previous password and new one twise
+// updating email will require new verification check
+// deleting account requires user to enter current password before it will be deleted
 const AccountContents = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const auth = useContext(AuthContext)
@@ -51,9 +54,9 @@ const AccountContents = () => {
 
       const [open, setOpen] = useState(false)
 
+      // this will handle account delete
       const handleYes = async (e) => {
         try {
-          console.log(auth.userId)
           await sendRequest(
                       `https://x4hw8n8xca.execute-api.eu-north-1.amazonaws.com/prod/user/deleteaccount`,
                       'POST',
@@ -72,6 +75,8 @@ const AccountContents = () => {
           setMessage(error.message)
         }
       };
+
+    // this handles changing emali
     const handleEmailChange = async (e) => {
         e.preventDefault()
         try {
@@ -93,6 +98,7 @@ const AccountContents = () => {
         }
     }
 
+    // this handles password change
     const handlePasswordChange = async (e) => {
         e.preventDefault()
         try {

@@ -2,6 +2,9 @@ import React,  {useContext, useState} from "react";
 import { SectionContext } from "../../contexts/SectionContext";
 import './LinkComponent.css'
 
+// this component is used to build hyperlink buttons
+// user can choose name and link for this button
+// only the built button will be shown in preview page
 const LinkComponent = ({index, row, setter, data}) => {
     const context = useContext(SectionContext)
     const [link, setLink] = useState("")

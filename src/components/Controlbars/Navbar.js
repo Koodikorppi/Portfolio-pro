@@ -9,6 +9,7 @@ const style = {
     edit: "edit-navbar"
 }
 
+// simplre navbar to present the section links
 const Navbar = () => {
 
     const {navLinks, mode} = useContext(SectionContext)

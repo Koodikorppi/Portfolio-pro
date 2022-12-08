@@ -16,6 +16,8 @@ const AuthMode = {
   login: 'login'
 }
 
+// this component is for basic authentication, user can either login or signup with this component
+// when user is logged in this component will then rerote page to user side
 const Authenticate = () => {
     const auth = useContext(AuthContext);
     const [loginMode, setLoginMode] = useState(AuthMode.login);
@@ -37,6 +39,7 @@ const Authenticate = () => {
       }
     );
 
+    // login/signup request to api gateway
     const onSubmitHandler = async event => {
       event.preventDefault();
       if (loginMode == AuthMode.login) {
@@ -118,6 +121,7 @@ const Authenticate = () => {
       setMessage("")
     }
 
+    // shows either login or signup component based on current mode
     const mode = loginMode === AuthMode.login ?
       <Login
       onSubmitHandler={onSubmitHandler}

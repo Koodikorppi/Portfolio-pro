@@ -1,6 +1,9 @@
 import React from "react";
 import "./TypeSelector.css"
 
+
+// this component is used to pick which type of data containing component user wants to pick
+// this also wont be shown in actual preview page
 const TypeSelector = ({index, row, setter}) => {
 
 

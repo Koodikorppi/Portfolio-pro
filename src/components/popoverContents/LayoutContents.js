@@ -5,7 +5,9 @@ import ModalUnstyled from '@mui/base/ModalUnstyled';
 import Button from '@mui/base/ButtonUnstyled';
 
 
-
+// this component handles changing layout style
+// gridlayout is default
+// when changing layouts user will be warned that this will empty current section from its data
 const LayoutContents = ({close}) => {
     const context = useContext(SectionContext)
     const [open, setOpen] = useState(false)

@@ -6,6 +6,8 @@ import { Container, Header } from "semantic-ui-react";
 import '../styles/VerificationPage.css';
 import { LoadingNotif } from "../components/common/LoadingNotif";
 
+// this page is used to send send the verification hash that was first sent to users email
+// it is used both account verification and new email verification
 export const VerificationPage = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const params = useParams();

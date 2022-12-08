@@ -8,12 +8,19 @@ import { v4 as uuidv4 } from 'uuid';
 import SliderLayout from "../layouts/SliderLayout";
 import { LoadingNotif } from "../common/LoadingNotif";
 
+// this handles presentation of sectiondata when user is editing it
+// it is used to save, delete and create new section
 const SectionContainer = () => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
     const {isLoading, error, sendRequest} = useHttpClient();
     const [edit, setEdit] = useState(false)
-    console.log(context.navLinks)
+
+
+    // this function handles data saving to database
+    // first it checks if this is first section to be saved
+    // then if not it wil find index for the section that will be upadetd
+    // after that data is reformatted to correct form and then sent in post request
     const handleSave = async () => {
         if(context.sectionName !== ""){
             const dataJson = []
@@ -71,6 +78,8 @@ const SectionContainer = () => {
         }
     }
 
+    // this function will handle deleting section
+    // after deletion it will show default gridlayout
     const handleDel = async () => {
       try {
         await sendRequest(
@@ -100,6 +109,7 @@ const SectionContainer = () => {
       }
     }
 
+    // this creates new section
     const newSection = () => {
       context.setSectionName("Section header...")
       context.setSectionId(null)
@@ -113,12 +123,14 @@ const SectionContainer = () => {
       context.setSectionId(null)
     }
 
+    // this function is used to add rows in gridlayout and slides in sliderlayout
     const addSlot = () => {
       context.setSectionData(prev => {
         return [...prev, [{type: ""}]]
       })
     }
 
+    // eventhandler to catch enter button press
     const handleEnter = (e) => {
       if(e.key == "Enter"){
         setEdit(false)

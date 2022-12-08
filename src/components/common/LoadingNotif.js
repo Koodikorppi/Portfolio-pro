@@ -3,7 +3,7 @@ import { ModalUnstyled } from "@mui/base";
 import { CircularProgress } from "@mui/material";
 import "./LoadingNotif.css"
 
-
+// this is simplre loading component to indicate ongoing fetch
 const LoadingNotif = ({state}) => {
     return(<ModalUnstyled
         id={"popoverwarn"}

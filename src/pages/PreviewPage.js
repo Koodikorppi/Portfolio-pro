@@ -1,13 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
-import Sidebar from "../components/Controlbars/Sidebar";
+import React, { useState, useEffect } from "react";
 import PreviewSectionContainer from "../components/containers/PreviewSectionContainer";
 import Navbar from "../components/Controlbars/Navbar";
 import { SectionContext } from "../contexts/SectionContext";
-import './UserPage.css'
+import './PreviewPage.css'
 import { useHttpClient } from "../hooks/useHttpClient";
-import { useNavigate } from "react-router";
 import { LoadingNotif } from "../components/common/LoadingNotif";
 
+// this is the page that is presented when using the public link url that visitors can use
+// it fill first try to get all sections from user and then it will present the first section by default
+// it will also show to visitor if page is not public
 export const PreviewPage = () => {
   const [sectionId, setSectionId] = useState(null)
   const [sectionName, setSectionName] = useState("")
@@ -15,7 +16,7 @@ export const PreviewPage = () => {
   const [background, setBackground] = useState(null)
   const [navLinks, setNavlinks] = useState([])
   const [layout, setLayout] = useState(null)
-  const navigate = useNavigate();
+  const [publish, setPublish] = useState(false)
   const {isLoading, error, sendRequest} = useHttpClient();
   const mode = "preview"
 
@@ -42,9 +43,10 @@ export const PreviewPage = () => {
        {type: ""}
       ]
    ])
+     setPublish(true)
     } catch (error) {
       if(error.code === 405){
-
+        setPublish(false)
       }
     }
   })()
@@ -60,6 +62,8 @@ export const PreviewPage = () => {
           layout: layout,
           sectionData: sectionData,
           mode: mode,
+          publish: publish,
+          setPulish: setPublish,
           setSectionId: setSectionId,
           setSectionName: setSectionName,
           setBackground: setBackground,
@@ -71,7 +75,9 @@ export const PreviewPage = () => {
       <div className="previewpage">
         <div className="previewcolumn">
           <Navbar />
-          <PreviewSectionContainer />
+          {publish ? <PreviewSectionContainer /> :
+            <div className="site-notpub">NO PUBLIC PORTFOLIO WITH THIS ADDRESS!</div>
+          }
         </div>
         <LoadingNotif state={isLoading}/>
       </div>

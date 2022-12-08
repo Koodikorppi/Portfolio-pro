@@ -5,7 +5,9 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
 import { LoadingNotif } from "./LoadingNotif";
 
-
+// this component works same way as linkbutton component
+// it is used to fetch section spesicif data from database
+// difference is that we also send url to also check if site is public
 const PreviewLinkButton = ({data}) => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
@@ -52,6 +54,10 @@ const PreviewLinkButton = ({data}) => {
         context.setSectionData(sectionData);
       } catch (error) {
         console.log(error)
+        if(error.code === 405){
+          context.setPulish(false)
+        }
+
       }
     };
 

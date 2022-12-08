@@ -9,7 +9,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import { LoadingNotif } from "../components/common/LoadingNotif";
 
-
+// this is the page user enters through login
+// it is used to edit their portfolio and control their account
+// first thing after login it will try to fetch all the existing sections user has laready saved
+// it will always present gridlayout first
 export const UserPage = () => {
   const [sectionId, setSectionId] = useState(null)
   const [sectionName, setSectionName] = useState("")

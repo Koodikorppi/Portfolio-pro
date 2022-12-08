@@ -23,7 +23,7 @@ const modules = {
   }
 
 
-
+// this component handles text boxes where user can write
 const TextEditComponent = ({index, row, setter, data}) => {
 
     const context = useContext(SectionContext)

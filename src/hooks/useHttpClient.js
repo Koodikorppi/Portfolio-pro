@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
+// fetch hook that is mainly used to make http requests
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false)

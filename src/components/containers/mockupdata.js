@@ -1,3 +1,5 @@
+// these functions were used to test data saving before end points were ready
+
 const saveData = (data) => {
     const storedData = JSON.parse(localStorage.getItem('sectionData')) !== undefined ? JSON.parse(localStorage.getItem('sectionData')) : {};
     const json = {

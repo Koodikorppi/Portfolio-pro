@@ -6,6 +6,9 @@ import AccountContents from "../popoverContents/AccountContents";
 import SettingsContents from "../popoverContents/SettingsContents";
 import BackgroundColorContents from "../popoverContents/BackgroundColorContents";
 
+// this component handles presentation of sidebar and its contents
+// it contains userSettings, pageSettings, layoutpicking and background color selection
+// popover panel will open when pressing any of the button and close if user clicks anywhere else but side or popover panel
 const Sidebar = () => {
     const [anchor, setAnchor] = useState(null);
     const [header, setHeader] = useState(null);

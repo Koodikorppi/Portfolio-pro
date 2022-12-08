@@ -6,6 +6,8 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import axios from "axios";
 import { LoadingNotif } from "./LoadingNotif";
 
+// same thing as with imageEditComponent, file is saved to s3 and presented then with
+// url directing to s3 storage bucket
 const VideoEditComponent = ({index, row, setter, data}) => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const context = useContext(SectionContext)

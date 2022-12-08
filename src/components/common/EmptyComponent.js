@@ -2,6 +2,8 @@ import React, {useContext} from "react";
 import { SectionContext } from "../../contexts/SectionContext";
 import "./EmptyComponent.css"
 
+
+// this is the bacis empty component that is used to add new type components to grid or slider layout
 const EmptyComponent = ({index, row, setter}) => {
     const context = useContext(SectionContext)
     const handleClick = () => {

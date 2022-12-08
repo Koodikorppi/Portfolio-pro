@@ -7,7 +7,8 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
 import { LoadingNotif } from "../common/LoadingNotif";
 
-
+// this container handles presentation of section data when using preview url link
+// it will always present the left most section by default when someone enter to this page
 const PreviewSectionContainer = () => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
@@ -52,6 +53,9 @@ const PreviewSectionContainer = () => {
         context.setSectionData(sectionData);
       } catch (error) {
         console.log(error)
+        if(error.code === 405){
+          context.setPulish(false)
+        }
       }
     };
 

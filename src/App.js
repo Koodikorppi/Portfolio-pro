@@ -9,6 +9,7 @@ import PreviewPage from './pages/PreviewPage';
 import UserPage from './pages/UserPage';
 import './styles/App.css'
 
+// root app that contains the react router routes
 const App = () => {
   const { token, userId, url, publish, setPublish, setUrl, login, logout, refreshToken } = useLoginHook()
   return (

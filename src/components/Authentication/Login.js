@@ -3,6 +3,7 @@ import Input from "../common/Input"
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { VALIDATOR_MINLENGTH } from "../../utilities/validators";
 
+// this component contains the visual presentation for login
 const Login = (props) => {
     const {onSubmitHandler, inputHandler, formState, isLoading} = props;
 

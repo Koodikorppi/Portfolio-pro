@@ -4,6 +4,8 @@ import { validate } from '../../utilities/validators';
 
 import '../../styles/Input.css';
 
+// this is simple input component that was used in last spring applications
+// it is useful for handling form data so we used it again
 const inputReducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE':

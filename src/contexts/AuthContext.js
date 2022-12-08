@@ -1,5 +1,6 @@
 import { createContext } from "react";
 
+// this is context component for sharing login related info withing components
 export const AuthContext = createContext({
     isLoggedIn: false,
     token: null,

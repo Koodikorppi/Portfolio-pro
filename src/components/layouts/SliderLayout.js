@@ -4,6 +4,7 @@ import { handleType, handlePreviewType } from "../../utilities/layoutUtils";
 import { useContext } from 'react';
 import { SectionContext } from '../../contexts/SectionContext';
 
+// this component will handle sliderlayout form both in edit or preview mode
 const SliderLayout = ({data, setter}) => {
     const context = useContext(SectionContext)
     return(<div className="sliderlayout">

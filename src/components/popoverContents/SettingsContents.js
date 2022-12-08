@@ -96,6 +96,11 @@ const Root = styled('span')(
     `,
   );
 
+// this component handles the public status of portfolio and its name
+// user can decide when they want to have public url working for their portfolio
+// they can also decide how the last section url will look like with updating their protfolio name
+// fresh users need to give portfolio name once before they can make their portfolio public
+// once porftolio has name user is given direct link to public page
 const SettingsContents = () => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const auth = useContext(AuthContext)
@@ -107,6 +112,7 @@ const SettingsContents = () => {
         }
       })
 
+    // changes portfolio public status
     const handlePublicChange = async () => {
       try {
         await sendRequest(
@@ -129,6 +135,7 @@ const SettingsContents = () => {
       }
     };
 
+    // updates the public protfolio page url
     const handleUrlUpdate = async (e) => {
         e.preventDefault()
         const finalUrl = `${window.location.href.replace("user","") + "preview/" + formState.inputs.url.value}/`

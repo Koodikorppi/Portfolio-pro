@@ -3,6 +3,7 @@ import { handleType, handlePreviewType } from "../../utilities/layoutUtils";
 import { useContext } from 'react';
 import { SectionContext } from '../../contexts/SectionContext';
 
+// this component will handle gridlayout form both in edit or preview mode
 const GridLayout = ({data, setter}) => {
     const context = useContext(SectionContext)
     return(<div className="gridlayout">

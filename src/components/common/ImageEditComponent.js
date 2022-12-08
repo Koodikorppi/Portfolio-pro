@@ -6,10 +6,14 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
 import { LoadingNotif } from "./LoadingNotif";
 
+// this component is used to store images to s3 and present them then in edit and preview pages
 const ImageEditComponent = ({index, row, setter, data}) => {
     const {isLoading, error, sendRequest} = useHttpClient();
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
+
+    // function that handles uploading images to s3 storage
+    // it first gets signed url from our api gateway that it then uses to put image in the storage
     const imageSettings = async (val) => {
         let url = ""
         try {

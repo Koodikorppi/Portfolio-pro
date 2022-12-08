@@ -2,6 +2,8 @@ import {useState, useCallback, useEffect} from 'react'
 
 let logoutTimer;
 let refreshInterval;
+
+// login hook that handles keeping up if user is logged in and refreshes the token in 15 min intervals if logged in
 export const useLoginHook = () => {
   const [token, setToken] = useState(false);
   const [url, setUrl] = useState("")

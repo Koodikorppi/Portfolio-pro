@@ -6,6 +6,7 @@ import VideoEditComponent from "../components/common/VideoEditComponent";
 import LinkComponent from "../components/common/LinkComponent";
 
 
+// this handles single container deletion in section
 const handleDelete = (index, row, setter) => {
     setter(prev => {
         prev[row].splice(index, 1)
@@ -18,6 +19,7 @@ const handleDelete = (index, row, setter) => {
     })
 }
 
+// this handles returning back to typeselection in single container
 const selectRepick = (index, row, setter) => {
     setter((prev) => {
         const newArr = [...prev]
@@ -25,6 +27,7 @@ const selectRepick = (index, row, setter) => {
         return newArr})
 }
 
+// this funciton is used to determine which type of container should be presented
 const handleType = (type, data, row, index, setter, layout) => {
   switch (type) {
     case "":
@@ -163,6 +166,8 @@ const handleType = (type, data, row, index, setter, layout) => {
   }
 };
 
+
+// this is the contaner presentation in preview page
 const handlePreviewType = (type, data, row, index, setter, layout) => {
   switch (type) {
     case "empty":

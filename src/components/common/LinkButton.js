@@ -5,6 +5,8 @@ import { useHttpClient } from "../../hooks/useHttpClient";
 import { AuthContext } from "../../contexts/AuthContext";
 import { LoadingNotif } from "./LoadingNotif";
 
+// this component represents nav link buttons
+// it handles fetcing section spesific data from api gateway based on section id
 const LinkButton = ({data}) => {
     const context = useContext(SectionContext)
     const auth = useContext(AuthContext)
