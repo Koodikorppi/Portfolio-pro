@@ -16,7 +16,7 @@ export const PreviewPage = () => {
   const [background, setBackground] = useState(null)
   const [navLinks, setNavlinks] = useState([])
   const [layout, setLayout] = useState(null)
-  const [publish, setPublish] = useState(false)
+  const [publish, setPublish] = useState(null)
   const {isLoading, error, sendRequest} = useHttpClient();
   const mode = "preview"
 
@@ -76,7 +76,7 @@ export const PreviewPage = () => {
         <div className="previewcolumn">
           <Navbar />
           {publish ? <PreviewSectionContainer /> :
-            <div className="site-notpub">NO PUBLIC PORTFOLIO WITH THIS ADDRESS!</div>
+            publish !== null ? <div className="site-notpub">NO PUBLIC PORTFOLIO WITH THIS ADDRESS!</div> : <></>
           }
         </div>
         <LoadingNotif state={isLoading}/>
