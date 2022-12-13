@@ -17,14 +17,14 @@
     font-weight: normal;
     color: #999;
 }
-.addressDiv .ButtonUnstyled-root{
+.addressDiv .MuiButton-root{
     padding: 0.5em 1em;
     background-color: orange;
     border: none;
     border-radius: 0.35em;
     color: black;
 }
-.addressDiv .ButtonUnstyled-root:hover:not(.Mui-disabled){
+.addressDiv .MuiButton-root:hover:not(.Mui-disabled){
     cursor: pointer;
     background-color: yellow;
 }

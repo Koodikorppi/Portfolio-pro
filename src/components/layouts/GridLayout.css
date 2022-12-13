@@ -28,9 +28,13 @@
     margin-bottom: 1em;
     position: relative;
 }
-.gridLayout-container div{
+.gridLayout-container .typeselect{
     display: flex;
+    width: auto;
+}
+.gridLayout-container div{
     margin: 0 auto;
+    width: 100%;
 }
 
 .gridLayout-preview-container{
@@ -106,7 +110,7 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px back;
+    box-shadow: inset 0 0 5px black;
     border-radius: 10px;
   }
 
