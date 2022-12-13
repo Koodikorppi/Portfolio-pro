@@ -10,7 +10,7 @@ const EmptyComponent = ({index, row, setter}) => {
         setter((prev) => {
              const newArr = [...prev]
              newArr[row][index] = {type: 'select'}
-             if(context.layout !== "SliderLayout" && index < 1){
+             if((context.layout === "sliderLayout" && index < 1) || context.layout === "gridLayout"){
                 newArr[row][index + 1] = {type: ""}
              }
              return newArr})
